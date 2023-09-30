@@ -13,6 +13,7 @@ export default function Header() {
           ["Add Book", "/addBook"],
         ].map(([title, url]) => (
           <Link
+            key={Math.floor(new Date().valueOf() * Math.random())}
             to={url}
             className="   leading-[4rem]   w-28 text-center  hover:ring-2 hover:bg-amber-800  hover:rounded-lg"
           >
@@ -26,6 +27,7 @@ export default function Header() {
           ["Sign In", "/SignIn"],
         ].map(([title, url]) => (
           <Link
+            key={Math.floor(new Date().valueOf() * Math.random())}
             to={url}
             className="  leading-[4rem]  w-28  text-center hover:ring-2 hover:bg-amber-800 hover:rounded-lg "
           >

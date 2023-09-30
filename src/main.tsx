@@ -7,9 +7,11 @@ import { store } from "./redux/store.ts";
 
 import { RouterProvider } from "react-router-dom";
 import { router } from "./route/route.tsx";
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <Toaster />
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
