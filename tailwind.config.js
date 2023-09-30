@@ -7,10 +7,11 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    fontFamily: {
-      sans: ["Croissant One", ...defaultTheme.fontFamily.sans],
+    extend: {
+      fontFamily: {
+        sans: ["Croissant One", ...defaultTheme.fontFamily.sans],
+      },
     },
-    extend: {},
   },
   plugins: [],
 };
