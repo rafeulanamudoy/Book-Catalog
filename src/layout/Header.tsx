@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../hooks/hook";
+import { useAppDispatch, useAppSelector } from "../hooks/hook";
+import { logOut } from "../redux/features/auth/authSlice";
 
 export default function Header() {
   const { user } = useAppSelector((state) => state.auth);
+
+  const dispatch = useAppDispatch();
 
   console.log(user);
 
@@ -30,7 +33,10 @@ export default function Header() {
         <>
           <div className="  grid grid-cols-2   ">
             <span>{user.email}</span>
-            <button className="uppercase"> Logout</button>
+            <button onClick={() => dispatch(logOut())} className="uppercase">
+              {" "}
+              Logout
+            </button>
           </div>
         </>
       ) : (

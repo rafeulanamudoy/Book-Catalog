@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ISignInData } from "../types/IUser";
-import { useSignInMutation } from "../redux/api/authApi";
+import { useSignInMutation } from "../redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
 
 import { setUser } from "../redux/features/auth/authSlice";

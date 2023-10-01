@@ -10,19 +10,15 @@ const initialState: IUser = {
   error: "",
 };
 
-export const authSlice = createSlice({
-  name: "authReducer",
+export const bookSlice = createSlice({
+  name: "bookReducer",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<string>) => {
+    getBooks: (state, action: PayloadAction<string>) => {
       console.log(action, "i am from authSlice");
-      state.user.email = action.payload;
-    },
-    logOut: (state) => {
-      state.user.email = "";
     },
   },
 });
 
-export const { setUser, logOut } = authSlice.actions;
-export default authSlice.reducer;
+export const { getBooks } = bookSlice.actions;
+export default bookSlice.reducer;
