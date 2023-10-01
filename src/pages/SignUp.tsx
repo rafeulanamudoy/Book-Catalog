@@ -3,10 +3,17 @@ import { ISignUpData } from "../types/IUser";
 import { useSignUpMutation } from "../redux/api/authApi";
 import { toast } from "react-hot-toast";
 
+import { setUser } from "../redux/features/auth/authSlice";
+import { useAppDispatch } from "../hooks/hook";
+import { useNavigate } from "react-router-dom";
+
 export default function SignUp() {
-  const { register, handleSubmit, reset } = useForm<ISignUpData>();
+  const { register, handleSubmit } = useForm<ISignUpData>();
 
   const [postUserData] = useSignUpMutation();
+  const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<ISignUpData> = async (userData) => {
     const { confirmPassword, ...others } = userData;
@@ -19,23 +26,23 @@ export default function SignUp() {
     await postUserData(others)
       .unwrap()
       .then((payload) => {
-        console.log(payload, "then function");
         toast.success("successfully signUp");
-        reset();
+        dispatch(setUser(payload?.data?.email));
+        navigate("/");
       })
       .catch((error) => {
-        console.log(error.data.message, "catch");
-        toast.error("email already exist");
+        console.log(error, "catch");
+        toast.error("Email Already Exist");
       });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center ">
+    <div className="h-[calc(100vh-7rem)] flex items-center justify-center">
       <form
         className="box-shadow-form   w-[35rem]  grid justify-center "
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="text-center text-2xl text-orange-600">Sign Up</h1>
+        <h1 className="text-center text-2xl text-orange-600 ">Sign Up</h1>
         <div className="">
           <label htmlFor="">Full Name:</label>
 
@@ -140,53 +147,8 @@ export default function SignUp() {
           </div>
         </div>
 
-        <button className="submit-button " type="submit">
-          Sign Up
-        </button>
+        <input className="submit-button" type="submit" value="Sign Up" />
       </form>
     </div>
   );
 }
-
-//  <div className="grid grid-rows-2 ">
-//           <label htmlFor="">Address</label>
-//           <div className="grid grid-rows-3   gap-y-3 ">
-//             <div className="grid gap-x-3 grid-cols-2">
-//               <input
-//                 className="border border-slate-400 rounded p-2"
-//                 placeholder="Street"
-//                 required
-//                 {...register("address.street")}
-//               />
-//               <input
-//                 className="border border-slate-400 rounded p-2"
-//                 placeholder="City"
-//                 required
-//                 {...register("address.city")}
-//               />
-//             </div>
-
-//             <div className="grid gap-x-3 grid-cols-2">
-//               <input
-//                 className="border border-slate-400 rounded p-2"
-//                 placeholder="District"
-//                 required
-//                 {...register("address.district")}
-//               />
-//               <input
-//                 className="border border-slate-400 rounded p-2"
-//                 placeholder="Division"
-//                 required
-//                 {...register("address.division")}
-//               />
-//             </div>
-
-//             <div className="grid ">
-//               <input
-//                 className="border border-slate-400 rounded p-2"
-//                 placeholder="Postal"
-//                 required
-//                 {...register("address.postal")}
-//               />
-//             </div>
-//           </div>

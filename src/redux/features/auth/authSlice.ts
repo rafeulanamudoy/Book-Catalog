@@ -15,6 +15,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<string>) => {
+      console.log(action, "i am from authSlice");
       state.user.email = action.payload;
     },
   },

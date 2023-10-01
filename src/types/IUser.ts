@@ -25,3 +25,8 @@ export type ISignUpData = {
     postal: string;
   };
 };
+
+export type ISignInData = {
+  email: string;
+  password: string;
+};
