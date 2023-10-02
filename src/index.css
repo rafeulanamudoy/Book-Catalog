@@ -19,9 +19,13 @@
     font-weight: 700;
     line-height: 40px;
   }
-}
-.book-cart {
-  box-shadow: 7px 7px 5px rgb(0, 2, 128);
-  border: 2px solid black;
-  background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(7, 0, 0));
+  .book-cart {
+    box-shadow: 7px 7px 5px rgb(0, 2, 128);
+    border: 2px solid black;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 0, 0, 0),
+      rgb(7, 0, 0)
+    );
+  }
 }
