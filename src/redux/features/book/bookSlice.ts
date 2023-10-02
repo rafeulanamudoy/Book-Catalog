@@ -1,24 +1,20 @@
-// import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-// import { IUser } from "../../../types/IUser";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-// const initialState: IUser = {
-//   user: {
-//     email: "",
-//   },
-//   isLoading: false,
-//   isError: false,
-//   error: "",
-// };
+import { IStoreBook } from "../../../types/IBook";
 
-// export const bookSlice = createSlice({
-//   name: "bookReducer",
-//   initialState,
-//   reducers: {
-//     getBooks: (state, action: PayloadAction<string>) => {
-//       console.log(action, "i am from authSlice");
-//     },
-//   },
-// });
+const initialState: IStoreBook = {
+  searchBook: "",
+};
 
-// export const { getBooks } = bookSlice.actions;
-// export default bookSlice.reducer;
+export const bookSlice = createSlice({
+  name: "bookReducer",
+  initialState,
+  reducers: {
+    setSearchBook: (state, action: PayloadAction<string>) => {
+      state.searchBook = action.payload;
+    },
+  },
+});
+
+export const { setSearchBook } = bookSlice.actions;
+export default bookSlice.reducer;

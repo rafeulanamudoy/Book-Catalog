@@ -1,21 +1,22 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
+type SearchBarProps = {
+  handleSearchData: (data: string) => void;
+};
 
-export default function SearchBar() {
-  const [text, setText] = useState("");
+export default function SearchBar({ handleSearchData }: SearchBarProps) {
   const searchRef = useRef<HTMLInputElement | null>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log("handleSubmit ran");
+    //console.log("handleSubmit ran");
     event.preventDefault();
 
     if (searchRef.current) {
-      setText(searchRef.current.value);
+      handleSearchData(searchRef.current.value);
     }
     if (event.currentTarget instanceof HTMLFormElement) {
       event.currentTarget.reset(); // Clear the form
     }
   };
-  console.log(text);
 
   return (
     <form className="w-1/2 mx-auto " onSubmit={handleSubmit}>

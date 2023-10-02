@@ -15,3 +15,7 @@ export type IBook = {
 export type BookCartProps = {
   book: IBook;
 };
+
+export type IStoreBook = {
+  searchBook?: string;
+};
