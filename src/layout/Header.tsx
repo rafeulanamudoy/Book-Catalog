@@ -17,7 +17,7 @@ export default function Header() {
       <nav className="  grid grid-cols-3  content-center    gap-x-8 ">
         {[
           ["Home", "/home"],
-          ["All Books", "/books"],
+          ["All Books", "/allBooks"],
           ["Add Book", "/addBook"],
         ].map(([title, url]) => (
           <Link
