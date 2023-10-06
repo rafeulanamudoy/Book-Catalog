@@ -1,25 +1,30 @@
 import { useRef } from "react";
-type SearchBarProps = {
-  handleSearchData: (data: string) => void;
-};
+import { useAppDispatch } from "../hooks/hook";
+import { setSearchBook } from "../redux/features/book/bookSlice";
+// type SearchBarProps = {
+//   handleSearchData: (data: string) => void;
+// };
 
-export default function SearchBar({ handleSearchData }: SearchBarProps) {
+export default function SearchBar() {
   const searchRef = useRef<HTMLInputElement | null>(null);
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     //console.log("handleSubmit ran");
     event.preventDefault();
 
     if (searchRef.current) {
-      handleSearchData(searchRef.current.value);
+      //   handleSearchData(searchRef.current.value);
+      // console.log(searchRef.current.value);
+      dispatch(setSearchBook(searchRef.current.value));
     }
-    if (event.currentTarget instanceof HTMLFormElement) {
-      event.currentTarget.reset(); // Clear the form
-    }
+    // if (event.currentTarget instanceof HTMLFormElement) {
+    //   event.currentTarget.reset(); // Clear the form
+    // }
   };
 
   return (
-    <form className="w-1/2 mx-auto " onSubmit={handleSubmit}>
+    <form className="w-1/2 mx-auto relative" onSubmit={handleSubmit}>
       <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
         Search
       </label>

@@ -7,7 +7,7 @@ export default function Header() {
 
   const dispatch = useAppDispatch();
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="  font-bold uppercase flex justify-between bg-gray-700 text-white   leading-[7rem]    ">
