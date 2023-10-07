@@ -16,7 +16,7 @@ export type ISignUpData = {
   phoneNumber: string;
 
   password: string;
-  confirmPassword: string;
+  confirmPassword?: string;
   address: {
     street: string;
     city: string;

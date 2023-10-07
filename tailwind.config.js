@@ -12,7 +12,7 @@ export default {
         sans: ["Croissant One", ...defaultTheme.fontFamily.sans],
       },
       screens: {
-        extraSm: "480px",
+        extraSm: "280px",
       },
     },
   },

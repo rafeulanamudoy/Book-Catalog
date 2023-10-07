@@ -62,14 +62,13 @@ export default function SignUp() {
           </div>
         </div>
 
-        <div className="">
+        <div className=" ">
           <label htmlFor="">Email:</label>
-          <div className="grid ">
+          <div className="grid">
             <input
               className="border border-slate-400 rounded p-2"
+              placeholder="Email"
               type="email"
-              placeholder="
-      Email"
               required
               {...register("email")}
             />

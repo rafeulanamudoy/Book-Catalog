@@ -37,14 +37,13 @@ export default function SignIn() {
       >
         <h1 className="text-center text-2xl text-orange-600 ">Sign In</h1>
 
-        <div className="">
+        <div className=" ">
           <label htmlFor="">Email:</label>
-          <div className="grid ">
+          <div className="grid">
             <input
               className="border border-slate-400 rounded p-2"
+              placeholder="Email"
               type="email"
-              placeholder="
-      Email"
               required
               {...register("email")}
             />
