@@ -1,15 +1,12 @@
-type IStatus = "In Stock" | "Out Of Stock";
-
 export type IBook = {
+  _id: string;
   Title: string;
   Author: string;
   Genre: string;
   PublicationDate: Date;
   Image: string;
-  status: IStatus;
-  rating: number;
-  price: number;
-  copies: number;
+  Email: string;
+
   reviews?: string[];
 };
 export type BookCartProps = {
@@ -44,4 +41,14 @@ export type IBookResponse = {
     // Update this to match the actual data type
   };
   isLoading: boolean;
+};
+
+export type IReview = {
+  email: string;
+  _id: string;
+  reveiw: string;
+};
+export type IReviewData = {
+  id: string;
+  userReview: IReview;
 };

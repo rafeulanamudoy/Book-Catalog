@@ -24,10 +24,7 @@ export default function SearchBar() {
   };
 
   return (
-    <form
-      className="w-1/2 mx-auto relative extraSm:w-full"
-      onSubmit={handleSubmit}
-    >
+    <form className="lg:w-1/2   extraSm:w-full" onSubmit={handleSubmit}>
       <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
         Search
       </label>

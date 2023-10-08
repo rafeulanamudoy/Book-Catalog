@@ -5,6 +5,7 @@ import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import AllBooks from "../pages/AllBooks";
 import AddNewBook from "../pages/AddNewBook";
+import BookDetails from "../pages/BookDetails";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "/addBook",
         element: <AddNewBook />,
+      },
+      {
+        path: "/bookDetails/:id",
+        element: <BookDetails />,
       },
     ],
   },

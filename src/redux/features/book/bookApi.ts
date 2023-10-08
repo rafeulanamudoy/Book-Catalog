@@ -1,4 +1,4 @@
-import { IBookParms } from "../../../types/IBook";
+import { IBook, IBookParms, IReview, IReviewData } from "../../../types/IBook";
 import { baseApi } from "../../api/baseApi";
 
 export const bookApi = baseApi.injectEndpoints({
@@ -8,6 +8,7 @@ export const bookApi = baseApi.injectEndpoints({
     }),
     filterBooks: build.query({
       query: (filter: string) => `/books/?query=${filter}`,
+      providesTags: ["Book"],
     }),
 
     filterYear: build.query({
@@ -41,6 +42,27 @@ export const bookApi = baseApi.injectEndpoints({
         return `/books/?Genre=${Genre}&query=${query}&publicationYear=${publicationYear}`;
       },
     }),
+
+    postBook: build.mutation({
+      query: (data: IBook) => ({
+        url: "/books",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Book"],
+    }),
+    getSingleBook: build.query({
+      query: (id) => `books/${id}`,
+    }),
+
+    updateReview: build.mutation({
+      query: ({ id, userReview }) => ({
+        url: `/books/${id}`,
+        method: "Patch",
+        body: userReview,
+      }),
+      invalidatesTags: ["Book"],
+    }),
   }),
 });
 
@@ -54,4 +76,6 @@ export const {
   useFilterSearchGenreQuery,
   useFilterSearchYearQuery,
   useFilterSearchGenreYearQuery,
+  usePostBookMutation,
+  useGetSingleBookQuery,
 } = bookApi;

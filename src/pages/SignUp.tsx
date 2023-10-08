@@ -37,7 +37,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="h-[calc(100vh-7rem)] flex items-center justify-center">
+    <div className=" mt-5   flex items-center justify-center ">
       <form
         className="box-shadow-form   w-[35rem]  grid justify-center "
         onSubmit={handleSubmit(onSubmit)}

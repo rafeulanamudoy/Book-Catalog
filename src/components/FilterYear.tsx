@@ -16,10 +16,11 @@ export default function FilterYear() {
       <div className=" inline border-4">
         <select onChange={handleGenreChange}>
           <option>Select Year:</option>
-          <option>2020</option>
-          <option>2021</option>
-          <option>2022</option>
-          <option>2023</option>
+          <option>1990</option>
+          <option>1989</option>
+          <option>1988</option>
+          <option>1987</option>
+          <option>1986</option>
         </select>
       </div>
     </div>

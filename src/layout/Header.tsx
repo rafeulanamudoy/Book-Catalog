@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <div
-      className={` font-bold uppercase flex justify-between bg-gray-700 text-white  extraSm:text-sm extraSm:font-normal     `}
+      className={` lg:font-bold  lg:text-sm uppercase flex justify-between bg-gray-700 text-white  extraSm:text-sm extraSm:font-normal     `}
     >
       <div
         className={` ${
