@@ -5,6 +5,7 @@ export const bookApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getBooks: build.query({
       query: () => "/books",
+      providesTags: ["Book"],
     }),
     filterBooks: build.query({
       query: (filter: string) => `/books/?query=${filter}`,
@@ -53,7 +54,6 @@ export const bookApi = baseApi.injectEndpoints({
     }),
     getSingleBook: build.query({
       query: (id) => `books/${id}`,
-      providesTags: ["updateReview"],
     }),
 
     updateReview: build.mutation({
@@ -62,7 +62,14 @@ export const bookApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: userReview,
       }),
-      invalidatesTags: ["updateReview"],
+    }),
+    updateSingleBook: build.mutation({
+      query: ({ bookId, updateData }) => ({
+        url: `/books/updateBook/${bookId}`,
+        method: "PATCH",
+        body: updateData,
+      }),
+      invalidatesTags: ["Book"],
     }),
   }),
 });
@@ -80,4 +87,5 @@ export const {
   usePostBookMutation,
   useGetSingleBookQuery,
   useUpdateReviewMutation,
+  useUpdateSingleBookMutation,
 } = bookApi;

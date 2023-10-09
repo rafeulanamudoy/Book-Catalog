@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   useGetSingleBookQuery,
   useUpdateReviewMutation,
@@ -108,6 +108,19 @@ const BookDetails = () => {
               </button>
             </div>
           </>
+        )}
+
+        {email === data?.data?.Email && (
+          <div className="grid grid-cols-2 gap-3 w-1/2   text-white xl:text-lg  lg:text-sm">
+            <Link
+              state={{ bookData: data?.data }}
+              to="/bookEdit"
+              className=" bg-cyan-600 rounded mb-10 text-center  text-white "
+            >
+              Edit
+            </Link>
+            <button className=" bg-fuchsia-800 rounded  mb-10  ">Delete</button>
+          </div>
         )}
       </div>
     </div>
