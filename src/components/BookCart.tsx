@@ -11,7 +11,7 @@ export default function BookCart({ book }: BookCartProps) {
     <Link to={`/bookDetails/${_id}`}>
       <div className=" my-5 book-cart grid grid-cols-2  text-center ml-4 mr-4 text-white">
         <div className="">
-          <img className="object-cover h-full " src={Image} alt="" />
+          <img className="object-cover  " src={Image} alt="" />
         </div>
 
         <div className=" my-auto extraSm:text-sm  ">

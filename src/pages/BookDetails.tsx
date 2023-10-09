@@ -1,14 +1,18 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
+  useDeleteSingleBookMutation,
   useGetSingleBookQuery,
   useUpdateReviewMutation,
 } from "../redux/features/book/bookApi";
 import { useRef } from "react";
 import { IReview } from "../types/IBook";
 import { useAppSelector } from "../hooks/hook";
+import toast from "react-hot-toast";
 
 const BookDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [deleteBook] = useDeleteSingleBookMutation();
 
   const { data, isLoading } = useGetSingleBookQuery(id, {
     pollingInterval: 1000,
@@ -48,6 +52,26 @@ const BookDetails = () => {
       textValue.current.value = "";
     }
     // Use textareaValue here
+  };
+
+  const handleDelete = async () => {
+    const confirm = window.confirm("are your sure you want to delete");
+    console.log(confirm);
+
+    if (confirm) {
+      await deleteBook(data?.data?._id)
+        .unwrap()
+        .then(() => {
+          toast.success("deleted successfully");
+        })
+        .catch((err) => {
+          toast.error(err);
+        });
+
+      navigate("/home");
+    } else {
+      toast.error("you have confirm not to delete the book");
+    }
   };
 
   return (
@@ -119,7 +143,12 @@ const BookDetails = () => {
             >
               Edit
             </Link>
-            <button className=" bg-fuchsia-800 rounded  mb-10  ">Delete</button>
+            <button
+              onClick={handleDelete}
+              className=" bg-fuchsia-800 rounded  mb-10  "
+            >
+              Delete
+            </button>
           </div>
         )}
       </div>
