@@ -1,19 +1,28 @@
 import { useParams } from "react-router-dom";
-import { useGetSingleBookQuery } from "../redux/features/book/bookApi";
+import {
+  useGetSingleBookQuery,
+  useUpdateReviewMutation,
+} from "../redux/features/book/bookApi";
 import { useRef } from "react";
 import { IReview } from "../types/IBook";
+import { useAppSelector } from "../hooks/hook";
 
 const BookDetails = () => {
   const { id } = useParams();
 
-  const { data, isLoading } = useGetSingleBookQuery(id);
+  const { data, isLoading } = useGetSingleBookQuery(id, {
+    pollingInterval: 1000,
+  });
+  const { email } = useAppSelector((state) => state.auth.user);
+
+  const [updateReview] = useUpdateReviewMutation();
 
   const textValue = useRef<HTMLTextAreaElement>(null);
 
   const formattedPublicationDate = new Date(
     data?.data?.PublicationDate
   ).toLocaleDateString();
-  console.log(data?.data);
+  //console.log(data?.data);
 
   if (isLoading) {
     return (
@@ -23,9 +32,18 @@ const BookDetails = () => {
     );
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (textValue.current) {
       const textareaValue = textValue.current.value;
+      const userReview = {
+        review: {
+          email: email,
+          reveiw: textareaValue,
+        },
+      };
+      const bookId = data?.data?._id;
+      await updateReview({ bookId, userReview });
+
       console.log("Textarea Value:", textareaValue);
       textValue.current.value = "";
     }
@@ -65,30 +83,32 @@ const BookDetails = () => {
             <p>No reviews available.</p>
           ) : (
             <ul>
-              {data?.data?.reviews.map((review: IReview, index: number) => (
-                <>
-                  <li className=" text-lime-700 text-sm" key={index}>
-                    {review.email}:
-                    <span className="text-black">{review.reveiw}</span>
-                  </li>
-                </>
+              {data?.data?.reviews.map((review: IReview) => (
+                <li className=" text-lime-700 text-sm" key={review._id}>
+                  {review.email}:
+                  <span className="text-black">{review.reveiw}</span>
+                </li>
               ))}
             </ul>
           )}
         </div>
-        <span>Add a Comment:</span>
-        <div className="grid grid-rows-3  gap-y-3">
-          <textarea
-            ref={textValue}
-            className="border resize-none border-gray-400  rounded w-5/6"
-          />
-          <button
-            onClick={handleSubmit}
-            className="  bg-orange-700  text-white text-xs w-1/3 h-1/2 justify-self-start text-center border border-indigo-600"
-          >
-            Submit
-          </button>
-        </div>
+        {email && (
+          <>
+            <span>Add a Comment:</span>
+            <div className="grid grid-rows-3  gap-y-3">
+              <textarea
+                ref={textValue}
+                className="border resize-none border-gray-400  rounded w-5/6"
+              />
+              <button
+                onClick={handleSubmit}
+                className="  bg-orange-700  text-white text-xs w-1/3 h-1/2 justify-self-start text-center border border-indigo-600"
+              >
+                Submit
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

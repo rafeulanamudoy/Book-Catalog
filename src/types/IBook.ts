@@ -45,7 +45,7 @@ export type IBookResponse = {
 
 export type IReview = {
   email: string;
-  _id: string;
+  _id?: string;
   reveiw: string;
 };
 export type IReviewData = {
