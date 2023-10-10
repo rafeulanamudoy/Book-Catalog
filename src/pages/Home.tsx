@@ -11,7 +11,7 @@ export default function Home() {
     return <div>Loading...</div>;
   }
 
-  //console.log(error, "api error");
+  console.log(import.meta.env);
 
   return (
     <div>
