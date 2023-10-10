@@ -9,7 +9,7 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} All Rights Reserved</p>
         </div>
         <div>
-          <ul className="flex space-x-4">
+          <ul className="md:flex   extraSm:grid extraSm:grid-rows-5 md:space-x-4">
             <li>
               <Link to="/home" className="hover:text-white">
                 Home
