@@ -23,11 +23,11 @@ export default function Header() {
           isMobileMenuOpen ? "hidden lg:grid " : "block "
         }  ml-10 grid content-center leading-[7] `}
       >
-        <span>Book Catalog</span>
+        <span className=" text-fuchsia-400  text">Book Catalog</span>
       </div>
       <nav
         className={`hidden lg:grid ${
-          user.email ? `grid-cols-3` : "grid-cols-2"
+          user.email ? `grid-cols-5` : "grid-cols-2"
         }  content-center    gap-x-8 `}
       >
         {[
@@ -37,24 +37,30 @@ export default function Header() {
           <Link
             key={Math.floor(new Date().valueOf() * Math.random())}
             to={url}
-            className=" leading-[4rem]  w-28  text-center hover:ring-2 hover:bg-amber-800 hover:rounded-lg "
+            className=" leading-[4rem]    text-center hover:ring-2 hover:bg-amber-800 hover:rounded-lg "
           >
             {title}
           </Link>
         ))}
-        {user?.email && (
-          <Link
-            className="   leading-[4rem]    text-center hover:ring-2 hover:bg-amber-800 hover:rounded-lg  "
-            to="/addBook"
-          >
-            Add New Book
-          </Link>
-        )}
+
+        {user?.email &&
+          [
+            ["Add New Book", "/addBook"],
+            ["WishList", "/wishList"],
+            ["ReadingList", "/readingList"],
+          ].map(([title, url]) => (
+            <Link
+              key={Math.floor(new Date().valueOf() * Math.random())}
+              to={url}
+              className="  leading-[4rem]    text-center hover:ring-2 hover:bg-amber-800 hover:rounded-lg "
+            >
+              {title}
+            </Link>
+          ))}
       </nav>
       {user.email ? (
         <>
           <div className=" hidden lg:grid grid-cols-2   ">
-            <button className="uppercase">{user.email}</button>
             <button onClick={() => dispatch(logOut())} className="uppercase">
               {" "}
               Logout
@@ -66,7 +72,7 @@ export default function Header() {
           <nav className="hidden mr-10 lg:grid grid-cols-2   gap-x-8  content-center   ">
             {[
               ["Sign UP", "/signUp"],
-              ["Sign In", "/SignIn"],
+              ["Sign In", "/signIn"],
             ].map(([title, url]) => (
               <Link
                 key={Math.floor(new Date().valueOf() * Math.random())}
@@ -102,16 +108,25 @@ export default function Header() {
 
             {user.email ? (
               <>
-                <Link to="/addBook  ">Add New Book</Link>
+                {[
+                  ["Add New Book", "/addBook"],
+                  ["WishList", "/wishList"],
+                  ["ReadingList", "/readingList"],
+                ].map(([title, url]) => (
+                  <Link
+                    key={Math.floor(new Date().valueOf() * Math.random())}
+                    to={url}
+                    className="hover:underline mb-3"
+                  >
+                    {title}
+                  </Link>
+                ))}
 
                 <button
                   onClick={() => dispatch(logOut())}
-                  className="flex my-3 hover:underline text-white uppercase "
+                  className="flex hover:underline text-white uppercase "
                 >
                   Logout
-                </button>
-                <button className="text-white uppercase  hover:underline">
-                  {user.email}
                 </button>
               </>
             ) : (

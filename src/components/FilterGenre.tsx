@@ -2,7 +2,7 @@
 //   handleFilterData: (data: string) => void;
 
 import { useAppDispatch } from "../hooks/hook";
-import { setGenre } from "../redux/features/book/bookSlice";
+import { setGenre } from "../redux/features/book/bookFilterSlice";
 
 // };
 export default function FilterMenu() {

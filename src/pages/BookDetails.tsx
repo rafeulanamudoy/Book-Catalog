@@ -63,12 +63,11 @@ const BookDetails = () => {
         .unwrap()
         .then(() => {
           toast.success("deleted successfully");
+          navigate("/home");
         })
         .catch((err) => {
           toast.error(err);
         });
-
-      navigate("/home");
     } else {
       toast.error("you have confirm not to delete the book");
     }
