@@ -1,6 +1,7 @@
 export type IUser = {
   user: {
     email: string;
+    role: string;
   };
   isLoading: boolean;
   isError: boolean;
@@ -8,25 +9,20 @@ export type IUser = {
 };
 
 export type ISignUpData = {
-  name: {
-    firstName: string;
-    lastName: string;
-  };
   email: string;
-  phoneNumber: string;
-
+  role?: string;
   password: string;
   confirmPassword?: string;
-  address: {
-    street: string;
-    city: string;
-    district: string;
-    division: string;
-    postal: string;
-  };
 };
 
 export type ISignInData = {
   email: string;
+  password: string;
+  role: string;
+};
+
+export type IUserResponseData = {
+  email: string;
+  role?: string;
   password: string;
 };

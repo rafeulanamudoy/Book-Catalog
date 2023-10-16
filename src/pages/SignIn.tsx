@@ -1,51 +1,79 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ISignInData } from "../types/IUser";
 import { useSignInMutation } from "../redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
+import * as yup from "yup";
 
-import { setUser } from "../redux/features/auth/authSlice";
-import { useAppDispatch } from "../hooks/hook";
 import { useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Form from "../reactHookForm/Form";
+import Input from "../reactHookForm/Input";
+import { useAppDispatch } from "../hooks/hook";
+import { setUser } from "../redux/features/auth/authSlice";
 
-export default function SignIn() {
-  const { register, handleSubmit } = useForm<ISignInData>();
+const EmailSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Enter a valid email")
+    .required("Email is required"),
+  password: yup
+    .string()
 
-  const [loginUserData] = useSignInMutation();
+    .required("Password is required"),
+});
+
+export default function SignUp() {
+  const dispatch = useAppDispatch();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(EmailSchema) });
+
+  const [login] = useSignInMutation();
   const navigate = useNavigate();
 
-  const dispatch = useAppDispatch();
-
-  const onSubmit: SubmitHandler<ISignInData> = async (userData) => {
-    await loginUserData(userData)
+  const onSubmit = async (userData: ISignInData) => {
+    reset();
+    console.log(userData);
+    await login(userData)
       .unwrap()
       .then((payload) => {
-        toast.success("successfully Login");
-        dispatch(setUser(payload?.data?.email));
+        toast.success(payload?.message);
+        console.log(payload);
+        dispatch(setUser(payload?.data));
+        console.log(payload);
         navigate("/");
       })
       .catch((error) => {
         console.log(error, "catch");
-        toast.error(error.data.message);
+
+        toast.error(error?.data?.message);
       });
   };
 
   return (
-    <div className="h-[calc(100vh-7rem)] flex items-center justify-center">
-      <form
+    <div className=" h-[calc(100vh-7rem)] flex items-center justify-center ">
+      <Form
         className="box-shadow-form   w-[35rem]  grid justify-center "
-        onSubmit={handleSubmit(onSubmit)}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+        register={register}
       >
         <h1 className="text-center text-2xl text-orange-600 ">Sign In</h1>
 
         <div className=" ">
           <label htmlFor="">Email:</label>
           <div className="grid">
-            <input
+            <Input
               className="border border-slate-400 rounded p-2"
-              placeholder="Email"
+              name="email"
               type="email"
-              required
-              {...register("email")}
+              placeholder="Enter your email"
+              error={errors.email?.message}
+              register={register}
+              autoFocus
             />
           </div>
         </div>
@@ -53,17 +81,20 @@ export default function SignIn() {
         <div className=" ">
           <label htmlFor="">Passowrd:</label>
           <div className="grid">
-            <input
+            <Input
               className="border border-slate-400 rounded p-2"
+              name="password"
+              type="password"
               placeholder="Password"
-              required
-              {...register("password")}
+              error={errors.password?.message}
+              register={register}
+              autoFocus
             />
           </div>
         </div>
 
         <input className="submit-button" type="submit" value="Sign In" />
-      </form>
+      </Form>
     </div>
   );
 }

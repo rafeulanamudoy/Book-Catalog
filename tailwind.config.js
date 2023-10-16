@@ -16,6 +16,14 @@ export default {
       },
       screens: {
         extraSm: "280px",
+        customMid: "1120px",
+      },
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        26: "repeat(26, minmax(0, 1fr))",
+      },
+      gridColumn: {
+        "span-25": "span 25 / span 25",
       },
     },
   },

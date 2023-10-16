@@ -1,9 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IUser } from "../../../types/IUser";
+import { IUser, IUserResponseData } from "../../../types/IUser";
 
 const initialState: IUser = {
   user: {
     email: "",
+    role: "",
   },
   isLoading: false,
   isError: false,
@@ -14,9 +15,10 @@ export const authSlice = createSlice({
   name: "authReducer",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<string>) => {
-      console.log(action, "i am from authSlice");
-      state.user.email = action.payload;
+    setUser: (state, { payload }: PayloadAction<IUserResponseData>) => {
+      console.log(payload, "i am from authSlice");
+      state.user.email = payload.email ?? "";
+      state.user.role = payload.role ?? "";
     },
     logOut: (state) => {
       state.user.email = "";
