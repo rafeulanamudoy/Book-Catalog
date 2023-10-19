@@ -18,6 +18,7 @@ import AddService from "../pages/AddService";
 import UpdateService from "../pages/UpdateService";
 import ManageService from "../pages/ManageService";
 import ServiceDetails from "../pages/ServiceDetails";
+import CreateCategory from "../pages/CreateCategory";
 
 export const router = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ export const router = createBrowserRouter([
       {
         path: "allService",
         element: <ManageService />,
+      },
+      {
+        path: "createCategory",
+        element: <CreateCategory />,
       },
     ],
   },

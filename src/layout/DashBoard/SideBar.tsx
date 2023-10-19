@@ -126,6 +126,11 @@ export default function SideBar() {
                   url: "addService",
                   icon: faCompass,
                 },
+                {
+                  title: "Create Category",
+                  url: "createCategory",
+                  icon: faCompass,
+                },
 
                 {
                   title: "All Bookings",

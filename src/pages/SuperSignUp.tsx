@@ -224,7 +224,7 @@ export default function SuperSignUp() {
           <div className="">
             <Input
               className="border lg:w-96 extraSm:w-60  border-slate-400 rounded p-2"
-              name="contactNumber"
+              name="design"
               type="text"
               placeholder="desigantion"
               register={register}

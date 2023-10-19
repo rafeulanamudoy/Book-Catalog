@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetAllBookingQuery } from "../redux/features/Booking/bookingApi";
 import BookingTable from "../components/BookingTable";
 import { IReturnBooking } from "../types/IBooking";
