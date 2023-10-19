@@ -1,13 +1,34 @@
+import toast from "react-hot-toast";
+import { useDeleteServiceMutation } from "../redux/features/service/serviceApi";
 import { ServiceCartProps } from "../types/IService";
 
 import { Link } from "react-router-dom";
 
 export default function ManageServiceCart({ service }: ServiceCartProps) {
-  const { name, image, serviceStatus, price, category } = service;
+  const { name, image, serviceStatus, price, category, id } = service;
   console.log(service);
 
   // Assuming you have a conversion function for ServiceStatus to string
   const serviceStatusString = serviceStatus.toString();
+  const [deleteService] = useDeleteServiceMutation();
+  const handleDelete = async () => {
+    const confirm = window.confirm("are your sure you want to delete");
+    if (id && confirm) {
+      await deleteService(id)
+        .unwrap()
+        .then((payload) => {
+          toast.success(payload?.message);
+          console.log(payload);
+
+          console.log(payload);
+        })
+        .catch((error) => {
+          console.log(error, "catch");
+
+          toast.error(error?.data?.message);
+        });
+    }
+  };
   return (
     <div className="my-5 text-center ml-4 mr-4 text-white">
       <div>
@@ -29,7 +50,12 @@ export default function ManageServiceCart({ service }: ServiceCartProps) {
           >
             Update
           </Link>
-          <button className="bg-orange-400 w-32 rounded-full">Delete</button>
+          <button
+            onClick={handleDelete}
+            className="bg-orange-400 w-32 rounded-full"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

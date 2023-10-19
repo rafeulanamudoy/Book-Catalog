@@ -31,6 +31,13 @@ export const serviceApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Service"],
     }),
+    deleteService: build.mutation({
+      query: (id: string) => ({
+        url: `/service/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Service"],
+    }),
 
     filterBySearch: build.query({
       query: (search: string) => `/service?search=${search}`,
@@ -156,4 +163,5 @@ export const {
   useFilterBySearchCategoryPriceQuery,
   useAddServiceMutation,
   useUpdateServiceMutation,
+  useDeleteServiceMutation,
 } = serviceApi;
