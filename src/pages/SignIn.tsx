@@ -35,15 +35,14 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const onSubmit = async (userData: ISignInData) => {
-    reset();
-    console.log(userData);
     await login(userData)
       .unwrap()
       .then((payload) => {
         toast.success(payload?.message);
-        console.log(payload);
+
         dispatch(setUser(payload?.data));
-        console.log(payload);
+        reset();
+
         navigate("/");
       })
       .catch((error) => {

@@ -115,10 +115,21 @@ export default function SideBar() {
           {role === "admin" && (
             <>
               {[
-                { title: "Profile", url: "/profile", icon: faAddressCard },
+                { title: "Profile", url: "profile", icon: faAddressCard },
+                {
+                  title: "All Service",
+                  url: "allService",
+                  icon: faCompass,
+                },
                 {
                   title: "Add Service",
                   url: "addService",
+                  icon: faCompass,
+                },
+
+                {
+                  title: "All Bookings",
+                  url: "allBooking",
                   icon: faCompass,
                 },
               ].map(({ title, url, icon }) => (

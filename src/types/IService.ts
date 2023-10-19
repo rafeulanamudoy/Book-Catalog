@@ -1,21 +1,22 @@
 export type IService = {
-  id: string;
+  id?: string;
   name: string;
   image: string;
   description: string;
-  serviceStatus: ServiceStatus;
+  serviceStatus: string;
   price: number;
-  category: {
-    title: string;
+  category?: {
+    title?: string;
   };
   categoryId: string;
-  reviews: string[];
+  reviews?: string[];
 };
+
 export type ServiceCartProps = {
   service: IService;
 };
 
-enum ServiceStatus {
+export enum ServiceStatus {
   available,
   upcoming,
   unavailable,

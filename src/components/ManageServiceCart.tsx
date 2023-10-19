@@ -1,17 +1,13 @@
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../hooks/hook";
 import { ServiceCartProps } from "../types/IService";
 
-export default function AllServiceCart({ service }: ServiceCartProps) {
-  //console.log(service);
+import { Link } from "react-router-dom";
+
+export default function ManageServiceCart({ service }: ServiceCartProps) {
   const { name, image, serviceStatus, price, category } = service;
   console.log(service);
 
-  const { email } = useAppSelector((state) => state.auth.user);
-
   // Assuming you have a conversion function for ServiceStatus to string
   const serviceStatusString = serviceStatus.toString();
-
   return (
     <div className="my-5 text-center ml-4 mr-4 text-white">
       <div>
@@ -26,16 +22,14 @@ export default function AllServiceCart({ service }: ServiceCartProps) {
         <h1>Category:{category?.title}</h1>
         <h1>Service Status: {serviceStatusString}</h1>
         <div className="flex gap-2 justify-center my-5 text-xs leading-8">
-          {email && serviceStatusString === "available" ? (
-            <Link
-              to="/book"
-              state={service}
-              className="bg-fuchsia-800 w-32 rounded-full"
-            >
-              Book
-            </Link>
-          ) : null}
-          <button className="bg-orange-400 w-32 rounded-full">Details</button>
+          <Link
+            to="/dashboard/updateService"
+            state={service}
+            className="bg-fuchsia-800 w-32 rounded-full"
+          >
+            Update
+          </Link>
+          <button className="bg-orange-400 w-32 rounded-full">Delete</button>
         </div>
       </div>
     </div>

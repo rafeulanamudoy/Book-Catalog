@@ -38,7 +38,7 @@ const ProductFilterModal = ({ isOpen, onClose }: IProductFilter) => {
     categoryOptions = (
       <>
         <option>choose</option>
-        {data.data.map((category: ICategory) => (
+        {data?.data?.map((category: ICategory) => (
           <option key={category.id} value={category.title}>
             {category.title}
           </option>

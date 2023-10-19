@@ -1,16 +1,35 @@
-import { IFilterQuery } from "../../../types/IService";
+import { IFilterQuery, IService } from "../../../types/IService";
 import { baseApi } from "../../api/baseApi";
 
 export const serviceApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getAvailableService: build.query({
       query: () => "/service?serviceStatus=available",
+      providesTags: ["Service"],
     }),
     getUpcomingService: build.query({
       query: () => "/service?serviceStatus=upcoming",
+      providesTags: ["Service"],
     }),
     getAllService: build.query({
       query: () => "/service",
+      providesTags: ["Service"],
+    }),
+    addService: build.mutation({
+      query: (data: IService) => ({
+        url: "/service",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Service"],
+    }),
+    updateService: build.mutation({
+      query: ({ serviceId, updateData }) => ({
+        url: `/service/${serviceId}`,
+        method: "PATCH",
+        body: updateData,
+      }),
+      invalidatesTags: ["Service"],
     }),
 
     filterBySearch: build.query({
@@ -135,4 +154,6 @@ export const {
   useFilterBySearchStatusPriceQuery,
   useFilterBySearchStatusPriceCategoryQuery,
   useFilterBySearchCategoryPriceQuery,
+  useAddServiceMutation,
+  useUpdateServiceMutation,
 } = serviceApi;
