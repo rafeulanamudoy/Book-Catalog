@@ -25,15 +25,11 @@ export default function Header() {
       >
         <span className=" text-fuchsia-400  text">Painting</span>
       </div>
-      <nav
-        className={`hidden customMid:grid ${
-          user.email ? `grid-cols-4` : "grid-cols-4"
-        }  content-center    gap-x-8 `}
-      >
+      <nav className="hidden customMid:grid grid-cols-3 content-center    gap-x-8">
         {[
           ["Home", "/home"],
-          ["Availabe Service", "/availableService"],
-          ["Upcoming Service", "/upComingService"],
+          ["Our Services", "/services"],
+
           ["Events", "/events"],
         ].map(([title, url]) => (
           <Link
@@ -83,11 +79,11 @@ export default function Header() {
       </div>
       {isMobileMenuOpen && (
         <div className="  customMid:hidden block mr-10 my-5">
-          <nav className="grid grid-rows-4">
+          <nav className="grid grid-rows-3">
             {[
               ["Home", "/home"],
-              ["Availabe Service", "/availableService"],
-              ["Upcoming Service", "/upComingService"],
+              ["Our Services", "/services"],
+
               ["Events", "/events"],
             ].map(([title, url]) => (
               <Link

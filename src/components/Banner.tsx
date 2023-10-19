@@ -45,9 +45,12 @@ export default function Banner() {
 
   return (
     <div className=" h-[680px] w-screen m-auto relative group">
+      <div className=" z-10 absolute top-1/5 left-1/2 transform -translate-x-1/2 lg:text-4xl      text-green-800  md:text-2xl extraSm:text-xs">
+        House Painting Service
+      </div>
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-        className="w-full h-full  bg-center bg-cover duration-500"
+        className="w-full h-full  opacity-70   bg-center bg-cover duration-500"
       ></div>
       {/* Left Arrow */}
       <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl  bg-black/20 text-white cursor-pointer">

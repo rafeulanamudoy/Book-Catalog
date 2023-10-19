@@ -5,6 +5,9 @@ import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import DashBoard from "../layout/DashBoard/DashBoard";
 
+import AllService from "../pages/AllService";
+import ServiceBook from "../pages/ServiceBook";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +28,14 @@ export const router = createBrowserRouter([
       {
         path: "/signUp",
         element: <SignUp />,
+      },
+      {
+        path: "/services",
+        element: <AllService />,
+      },
+      {
+        path: "/book",
+        element: <ServiceBook />,
       },
     ],
   },

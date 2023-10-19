@@ -16,6 +16,14 @@ const EmailSchema = yup.object().shape({
     .string()
     .email("Enter a valid email")
     .required("Email is required"),
+  firstName: yup
+    .string()
+
+    .required("firsName is required"),
+  lastName: yup
+    .string()
+
+    .required("LastName  is required"),
   password: yup
     .string()
     .required("Please enter your password")
@@ -27,6 +35,19 @@ const EmailSchema = yup.object().shape({
     .string()
 
     .required("Confirm Password is required"),
+  contactNumber: yup
+    .string()
+
+    .required("contactNumber is required"),
+
+  gender: yup
+    .string()
+
+    .required("gender is required"),
+  address: yup
+    .string()
+
+    .required("address is required"),
 });
 
 export default function SignUp() {
@@ -49,9 +70,18 @@ export default function SignUp() {
       return;
     }
 
-    reset();
     console.log(others);
-    await postUserData(others)
+    const signUpData = {
+      firstName: others.firstName,
+      lastName: others.lastName,
+      password: others.password,
+      email: others.email,
+      gender: others.gender,
+      contactNumber: others.contactNumber,
+      address: others.address,
+    };
+
+    await postUserData(signUpData)
       .unwrap()
       .then((payload) => {
         console.log(payload);
@@ -65,10 +95,11 @@ export default function SignUp() {
 
         toast.error(error?.data?.message);
       });
+    reset();
   };
 
   return (
-    <div className=" h-[calc(100vh-7rem)] flex items-center justify-center ">
+    <div className="  mt-5 flex items-center justify-center ">
       <Form
         className="box-shadow-form   lg:w-[45rem] extraSm:w-[25rem]  grid justify-center "
         handleSubmit={handleSubmit}
@@ -76,14 +107,45 @@ export default function SignUp() {
         register={register}
       >
         <h1 className="text-center text-2xl text-orange-600 ">Sign Up</h1>
-
+        <div className="  grid justify-center ">
+          <label className="lg:w-96  grid  mx-auto" htmlFor="">
+            FirstName:
+          </label>
+          <div className=" ">
+            <Input
+              className="border  lg:w-96 extraSm:w-60  border-slate-400 rounded p-2"
+              name="firstName"
+              type="text"
+              placeholder="Enter your First Name"
+              error={errors.firstName?.message}
+              register={register}
+              autoFocus
+            />
+          </div>
+        </div>
+        <div className="  grid justify-center ">
+          <label className="lg:w-96  grid  mx-auto" htmlFor="">
+            Last Name:
+          </label>
+          <div className=" ">
+            <Input
+              className="border  lg:w-96 extraSm:w-60  border-slate-400 rounded p-2"
+              name="lastName"
+              type="text"
+              placeholder="Enter your Last Name"
+              error={errors.lastName?.message}
+              register={register}
+              autoFocus
+            />
+          </div>
+        </div>
         <div className="  grid justify-center ">
           <label className="lg:w-96  grid  mx-auto" htmlFor="">
             Email:
           </label>
           <div className=" ">
             <Input
-              className="border  lg:w-96 border-slate-400 rounded p-2"
+              className="border  lg:w-96 extraSm:w-60  border-slate-400 rounded p-2"
               name="email"
               type="email"
               placeholder="Enter your email"
@@ -100,7 +162,7 @@ export default function SignUp() {
           </label>
           <div className="">
             <Input
-              className="border  lg:w-96 border-slate-400 rounded p-2 "
+              className="border  lg:w-96 extraSm:w-60  border-slate-400 rounded p-2 "
               name="password"
               type="password"
               placeholder="Password"
@@ -116,7 +178,7 @@ export default function SignUp() {
           </label>
           <div className="">
             <Input
-              className="border lg:w-96 border-slate-400 rounded p-2"
+              className="border lg:w-96 extraSm:w-60   border-slate-400 rounded p-2"
               name="confirmPassword"
               type="password"
               placeholder="confirmPassword"
@@ -126,7 +188,67 @@ export default function SignUp() {
             />
           </div>
         </div>
+        <div className="  grid justify-center ">
+          <label className="lg:w-96  grid  mx-auto" htmlFor="">
+            contactNumber:
+          </label>
+          <div className="">
+            <Input
+              className="border lg:w-96 extraSm:w-60  border-slate-400 rounded p-2"
+              name="contactNumber"
+              type="text"
+              placeholder="contactNumber"
+              register={register}
+              error={errors.contactNumber?.message}
+              autoFocus
+            />
+          </div>
+        </div>
 
+        <div className="  grid justify-center ">
+          <label className="lg:w-96  grid  mx-auto" htmlFor="">
+            Address:
+          </label>
+          <div className="">
+            <Input
+              className="border lg:w-96 extraSm:w-60  border-slate-400 rounded p-2"
+              name="address"
+              type="text"
+              placeholder="Address"
+              register={register}
+              error={errors.gender?.message}
+              autoFocus
+            />
+          </div>
+        </div>
+        <div className="grid justify-center ">
+          <label className="lg:w-96 extraSm:w-60  extraSm:text-center lg:text-start grid mx-auto">
+            Gender:
+          </label>
+
+          <div className=" flex gap-3">
+            <div>
+              <Input
+                type="radio"
+                name="gender"
+                value="male"
+                register={register}
+                id="maleRadio"
+              />
+              <label>male</label>
+            </div>
+            <div className="">
+              <Input
+                type="radio"
+                name="gender"
+                value="female"
+                register={register}
+                id="femaleRadio"
+              />
+              <label>female</label>
+            </div>
+          </div>
+        </div>
         <input className="submit-button" type="submit" value="Sign Up" />
       </Form>
     </div>

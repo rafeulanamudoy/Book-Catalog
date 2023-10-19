@@ -9,10 +9,18 @@ export type IUser = {
 };
 
 export type ISignUpData = {
+  firstName: string;
+  lastName: string;
+
   email: string;
   role?: string;
   password: string;
   confirmPassword?: string;
+  contactNumber: string;
+
+  gender: Gender;
+  address: string;
+  designation?: string;
 };
 
 export type ISignInData = {
@@ -26,3 +34,7 @@ export type IUserResponseData = {
   role?: string;
   password: string;
 };
+enum Gender {
+  male,
+  female,
+}
