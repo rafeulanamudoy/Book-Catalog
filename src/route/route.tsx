@@ -17,6 +17,7 @@ import UserManagement from "../pages/UserManagement";
 import AddService from "../pages/AddService";
 import UpdateService from "../pages/UpdateService";
 import ManageService from "../pages/ManageService";
+import ServiceDetails from "../pages/ServiceDetails";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "/createSuperAdmin",
         element: <SuperSignUp />,
+      },
+      {
+        path: "/serviceDetails/:id",
+        element: <ServiceDetails />,
       },
     ],
   },

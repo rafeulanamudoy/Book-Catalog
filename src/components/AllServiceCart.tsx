@@ -4,7 +4,7 @@ import { ServiceCartProps } from "../types/IService";
 
 export default function AllServiceCart({ service }: ServiceCartProps) {
   //console.log(service);
-  const { name, image, serviceStatus, price, category } = service;
+  const { name, image, serviceStatus, price, category, id } = service;
   console.log(service);
 
   const { email } = useAppSelector((state) => state.auth.user);
@@ -35,7 +35,12 @@ export default function AllServiceCart({ service }: ServiceCartProps) {
               Book
             </Link>
           ) : null}
-          <button className="bg-orange-400 w-32 rounded-full">Details</button>
+          <Link
+            to={`/serviceDetails/${id}`}
+            className="bg-orange-400 w-32 rounded-full"
+          >
+            Details
+          </Link>
         </div>
       </div>
     </div>

@@ -54,3 +54,14 @@ export type IServiceBook = {
   userRequerment: string | undefined;
   location: string;
 };
+export type IReview = {
+  id?: string;
+  review: string;
+  rating: number;
+  userId: string;
+  serviceId: string;
+};
+export type IReviewData = {
+  id: string;
+  userReview: IReview;
+};

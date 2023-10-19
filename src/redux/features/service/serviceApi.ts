@@ -1,4 +1,4 @@
-import { IFilterQuery, IService } from "../../../types/IService";
+import { IFilterQuery, IReview, IService } from "../../../types/IService";
 import { baseApi } from "../../api/baseApi";
 
 export const serviceApi = baseApi.injectEndpoints({
@@ -15,9 +15,22 @@ export const serviceApi = baseApi.injectEndpoints({
       query: () => "/service",
       providesTags: ["Service"],
     }),
+    getServiceById: build.query({
+      query: (id: string) => `/service/${id}`,
+      providesTags: ["Service"],
+    }),
+
     addService: build.mutation({
       query: (data: IService) => ({
         url: "/service",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Service"],
+    }),
+    createServiceReview: build.mutation({
+      query: (data: IReview) => ({
+        url: "/review",
         method: "POST",
         body: data,
       }),
@@ -164,4 +177,6 @@ export const {
   useAddServiceMutation,
   useUpdateServiceMutation,
   useDeleteServiceMutation,
+  useGetServiceByIdQuery,
+  useCreateServiceReviewMutation,
 } = serviceApi;
