@@ -12,6 +12,7 @@ export default function AllServiceCart({ service }: ServiceCartProps) {
     category: { title },
   } = service;
   console.log(service);
+
   const { email } = useAppSelector((state) => state.auth.user);
 
   // Assuming you have a conversion function for ServiceStatus to string

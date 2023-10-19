@@ -5,24 +5,52 @@ import { useAppSelector } from "../hooks/hook";
 import { useGetUserByEmailQuery } from "../redux/features/auth/authApi";
 
 import { IBookingService } from "../types/IBooking";
+import { useLocation } from "react-router-dom";
+import { useCreateBookingMutation } from "../redux/features/Booking/bookingApi";
+import toast from "react-hot-toast";
 
 export default function ServiceBook() {
   const { email } = useAppSelector((state) => state.auth.user);
 
-  const { addToCart } = useAppSelector((state) => state.booking);
+  const location = useLocation();
+  //console.log(location.state);
+
   //console.log(addToCart[0]);
 
   const { data } = useGetUserByEmailQuery(email);
   //console.log(data?.data?.id);
 
   const { register, handleSubmit, reset } = useForm<IBookingService>();
+  const [postBook] = useCreateBookingMutation();
 
   const onSubmit: SubmitHandler<IBookingService> = async (payload) => {
+    const publicationDateISO = new Date(payload.startDate).toISOString();
     console.log(payload);
-    //console.log(bookId, updateData);
 
-    // updateSingleBook({ bookId, payload });
-    //console.log("updated data", bookData);
+    const updatedData = {
+      userId: payload.userId,
+      serviceId: payload.serviceId,
+      colorScheme: payload.colorScheme || "",
+      userRequerment: payload.userRequerment || "",
+      timeSlot: payload.timeSlot,
+      startDate: publicationDateISO,
+      dimention: payload.dimention,
+      location: payload.location,
+    };
+    await postBook(updatedData)
+      .unwrap()
+      .then((payload) => {
+        toast.success(payload?.message);
+        console.log(payload);
+
+        console.log(payload);
+      })
+      .catch((error) => {
+        console.log(error, "catch");
+
+        toast.error(error?.data?.message);
+      });
+
     reset();
   };
 
@@ -44,20 +72,20 @@ export default function ServiceBook() {
             <div className="grid">
               <input
                 className="border border-slate-400 rounded:lg p-2"
-                defaultValue={addToCart[0]?.name}
+                defaultValue={location?.state?.name}
                 autoFocus
               />
             </div>
           </div>
 
-          <div className="hidden  ">
+          <div className=" hidden ">
             <label htmlFor=""> ServiceId:</label>
             <div className="grid">
               <input
                 className="border w-full border-slate-400 rounded p-2"
                 type="text"
                 placeholder="serviceId"
-                defaultValue={addToCart[0]?.id}
+                defaultValue={location?.state?.id}
                 {...register("serviceId")}
                 autoFocus
               />
