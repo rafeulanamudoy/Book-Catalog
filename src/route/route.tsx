@@ -11,6 +11,7 @@ import SuperSignUp from "../pages/SuperSignUp";
 import Profile from "../pages/Profile";
 import ProfileEdit from "../pages/ProfileEdit";
 import BookingHistory from "../pages/BookingHistory";
+import AllBooking from "../pages/AllBooking";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         path: "bookingHistory",
         element: <BookingHistory />,
+      },
+      {
+        path: "allBooking",
+        element: <AllBooking />,
       },
     ],
   },
