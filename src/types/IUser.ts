@@ -17,6 +17,7 @@ export type ISignUpData = {
   password: string;
   confirmPassword?: string;
   contactNumber: string;
+  superRoleKey?: string;
 
   gender: Gender;
   address: string;

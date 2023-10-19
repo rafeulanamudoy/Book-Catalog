@@ -19,9 +19,22 @@ export const authApi = baseApi.injectEndpoints({
     }),
     getUserByEmail: build.query({
       query: (email: string) => `/auth/email/${email}`,
+      providesTags: ["Profile"],
+    }),
+    updateUser: build.mutation({
+      query: ({ userId, updateData }) => ({
+        url: `/auth/${userId}`,
+        method: "PATCH",
+        body: updateData,
+      }),
+      invalidatesTags: ["Profile"],
     }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useGetUserByEmailQuery } =
-  authApi;
+export const {
+  useSignUpMutation,
+  useSignInMutation,
+  useGetUserByEmailQuery,
+  useUpdateUserMutation,
+} = authApi;

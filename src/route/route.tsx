@@ -7,6 +7,10 @@ import DashBoard from "../layout/DashBoard/DashBoard";
 
 import AllService from "../pages/AllService";
 import ServiceBook from "../pages/ServiceBook";
+import SuperSignUp from "../pages/SuperSignUp";
+import Profile from "../pages/Profile";
+import ProfileEdit from "../pages/ProfileEdit";
+import BookingHistory from "../pages/BookingHistory";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +41,10 @@ export const router = createBrowserRouter([
         path: "/book",
         element: <ServiceBook />,
       },
+      {
+        path: "/createSuperAdmin",
+        element: <SuperSignUp />,
+      },
     ],
   },
   {
@@ -44,8 +52,16 @@ export const router = createBrowserRouter([
     element: <DashBoard />,
     children: [
       {
-        path: "/dashboard",
-        element: <SignIn />,
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "profileEdit",
+        element: <ProfileEdit />,
+      },
+      {
+        path: "bookingHistory",
+        element: <BookingHistory />,
       },
     ],
   },

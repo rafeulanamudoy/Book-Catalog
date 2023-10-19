@@ -44,13 +44,21 @@ const EmailSchema = yup.object().shape({
     .string()
 
     .required("gender is required"),
+  superRoleKey: yup
+    .string()
+
+    .required("superRoleKey is required"),
   address: yup
     .string()
 
     .required("address is required"),
+  designation: yup
+    .string()
+
+    .required("designation is required"),
 });
 
-export default function SignUp() {
+export default function SuperSignUp() {
   const {
     register,
     handleSubmit,
@@ -76,9 +84,12 @@ export default function SignUp() {
       lastName: others.lastName,
       password: others.password,
       email: others.email,
+      role: "superAdmin",
       gender: others.gender,
       contactNumber: others.contactNumber,
       address: others.address,
+      superRoleKey: others.superRoleKey,
+      designation: others.designation || "",
     };
 
     await postUserData(signUpData)
@@ -106,7 +117,9 @@ export default function SignUp() {
         onSubmit={onSubmit}
         register={register}
       >
-        <h1 className="text-center text-2xl text-orange-600 ">Sign Up</h1>
+        <h1 className="text-center text-2xl text-orange-600 ">
+          Super Admin Account
+        </h1>
         <div className="  grid justify-center ">
           <label className="lg:w-96  grid  mx-auto" htmlFor="">
             FirstName:
@@ -155,6 +168,22 @@ export default function SignUp() {
             />
           </div>
         </div>
+        <div className="  grid justify-center ">
+          <label className="lg:w-96  grid  mx-auto" htmlFor="">
+            Super Secret Key:
+          </label>
+          <div className=" ">
+            <Input
+              className="border  lg:w-96 extraSm:w-60  border-slate-400 rounded p-2"
+              name="superRoleKey"
+              type="text"
+              placeholder="Enter your The Super Secret Key"
+              error={errors.superRoleKey?.message}
+              register={register}
+              autoFocus
+            />
+          </div>
+        </div>
 
         <div className="  grid justify-center ">
           <label className=" lg:w-96  grid  mx-auto" htmlFor="">
@@ -190,6 +219,22 @@ export default function SignUp() {
         </div>
         <div className="  grid justify-center ">
           <label className="lg:w-96  grid  mx-auto" htmlFor="">
+            Your Designation:
+          </label>
+          <div className="">
+            <Input
+              className="border lg:w-96 extraSm:w-60  border-slate-400 rounded p-2"
+              name="contactNumber"
+              type="text"
+              placeholder="desigantion"
+              register={register}
+              error={errors.designation?.message}
+              autoFocus
+            />
+          </div>
+        </div>
+        <div className="  grid justify-center ">
+          <label className="lg:w-96  grid  mx-auto" htmlFor="">
             contactNumber:
           </label>
           <div className="">
@@ -216,7 +261,7 @@ export default function SignUp() {
               type="text"
               placeholder="Address"
               register={register}
-              error={errors.address?.message}
+              error={errors.gender?.message}
               autoFocus
             />
           </div>
@@ -249,7 +294,7 @@ export default function SignUp() {
             </div>
           </div>
         </div>
-        <input className="submit-button" type="submit" value="Sign Up" />
+        <input className="submit-button" type="submit" value="Create" />
       </Form>
     </div>
   );
