@@ -1,0 +1,40 @@
+import toast from "react-hot-toast";
+import { useDeleteBookingByIdMutation } from "../redux/features/Booking/bookingApi";
+import { BookingCartProps } from "../types/IBooking";
+
+export default function BookingTable({ booking }: BookingCartProps) {
+  const id = booking.id;
+  const [deleteBooking] = useDeleteBookingByIdMutation();
+
+  const handleDelete = () => {
+    if (id) {
+      deleteBooking(id)
+        .unwrap()
+        .then((payload) => {
+          toast.success(payload?.message);
+          console.log(payload);
+
+          console.log(payload);
+        })
+        .catch((error) => {
+          console.log(error, "catch");
+
+          toast.error(error?.data?.message);
+        });
+    }
+  };
+  return (
+    <tr>
+      <td className="p-2">{booking?.serviceType.name}</td>
+      <td className="p-2">{booking?.bookingStatus}</td>
+      <td className="p-2">
+        <button
+          onClick={handleDelete}
+          className="bg-red-700 w-28 h-10 rounded-lg text-white text-xs"
+        >
+          Cancel
+        </button>
+      </td>
+    </tr>
+  );
+}
