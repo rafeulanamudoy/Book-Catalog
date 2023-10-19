@@ -10,6 +10,7 @@ export type IUser = {
 
 export type ISignUpData = {
   firstName: string;
+  id?: string;
   lastName: string;
 
   email: string;
@@ -39,3 +40,6 @@ enum Gender {
   male,
   female,
 }
+export type UserCartProps = {
+  users: ISignUpData;
+};

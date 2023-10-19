@@ -17,6 +17,10 @@ export const authApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    getAllUsers: build.query({
+      query: () => `/auth/users`,
+      providesTags: ["Profile"],
+    }),
     getUserByEmail: build.query({
       query: (email: string) => `/auth/email/${email}`,
       providesTags: ["Profile"],
@@ -29,6 +33,13 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Profile"],
     }),
+    deleteuser: build.mutation({
+      query: (id: string) => ({
+        url: `/auth/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Profile"],
+    }),
   }),
 });
 
@@ -37,4 +48,6 @@ export const {
   useSignInMutation,
   useGetUserByEmailQuery,
   useUpdateUserMutation,
+  useGetAllUsersQuery,
+  useDeleteuserMutation,
 } = authApi;

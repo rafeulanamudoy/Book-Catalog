@@ -89,7 +89,7 @@ export default function SideBar() {
                   url: "allBooking",
                   icon: faCompass,
                 },
-                { title: "Crate Admin", url: "/createAdmin", icon: faCompass },
+                { title: "Crate Admin", url: "createAdmin", icon: faCompass },
                 {
                   title: "User Management",
                   url: "userManagement",

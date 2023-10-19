@@ -32,7 +32,9 @@ const Input: FC<InputProps> = ({
           {...register(name)}
           {...rest}
         />
-        {error && <div className="     text-sm  text-red-900">{error}</div>}
+        {error && (
+          <div className="     text-sm    text-orange-500">{error}</div>
+        )}
       </div>
     </div>
   );

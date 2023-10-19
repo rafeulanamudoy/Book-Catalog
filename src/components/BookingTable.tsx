@@ -13,9 +13,10 @@ export default function BookingTable({ booking }: BookingCartProps) {
 
   const [updateBooking] = useUpdateBookingMutation();
 
-  const handleDelete = () => {
-    if (id) {
-      deleteBooking(id)
+  const handleDelete = async () => {
+    const confirm = window.confirm("are your sure you want to delete");
+    if (id && confirm) {
+      await deleteBooking(id)
         .unwrap()
         .then((payload) => {
           toast.success(payload?.message);

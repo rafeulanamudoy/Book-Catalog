@@ -12,6 +12,8 @@ import Profile from "../pages/Profile";
 import ProfileEdit from "../pages/ProfileEdit";
 import BookingHistory from "../pages/BookingHistory";
 import AllBooking from "../pages/AllBooking";
+import CreateAdmin from "../pages/CreateAdmin";
+import UserManagement from "../pages/UserManagement";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +69,14 @@ export const router = createBrowserRouter([
       {
         path: "allBooking",
         element: <AllBooking />,
+      },
+      {
+        path: "createAdmin",
+        element: <CreateAdmin />,
+      },
+      {
+        path: "userManagement",
+        element: <UserManagement />,
       },
     ],
   },
