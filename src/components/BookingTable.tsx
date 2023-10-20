@@ -61,7 +61,7 @@ export default function BookingTable({ booking }: BookingCartProps) {
           <select
             id="availabilityFilter"
             onChange={handleUpdate}
-            className=" text-black"
+            className={`  text-black`}
           >
             <option value="">Choose</option>
             <option value="pending">Pending</option>

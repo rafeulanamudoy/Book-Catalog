@@ -19,7 +19,7 @@ export default function AllService() {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="bg-black">
+    <div className="bg-black h-screen">
       <ProductFilterModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
       <h1 className="text-center text-4xl  text-white">Our Services</h1>
 

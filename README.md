@@ -1,27 +1,27 @@
-# React + TypeScript + Vite
+# Home Painting Service
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In This customer can book service related to Home Painting Like Room Painting Commertial Painting Garage Painting etc.
 
-Currently, two official plugins are available:
+User Functionality Apply To This Site:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Service Search by Normal Search Bar ,Filter By Category ,Price Range,Availablabality.
+2. User Can Show Details Of The Service.
+3. In show Details Service User Can Add Comment And reveiw Related To The Service
+4. User Can Book Service.
+5. After SignUP user can See his Profile And Update Them
+6. User Can Track His Booking History and can cancel is Booking
 
-## Expanding the ESLint configuration
+Admin Functionality
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Admin Can Create Service
+2. Admin Can Create Category
 
-- Configure the top-level `parserOptions` property like this:
+Super admin Functionality
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+1. Super Admin Can Add admin
+   2.Super admin can manage User.
+   3.Super User Can Mange Booking History.he can Delete And change the booking status
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+   Super Admin Credentiality To Create Account:
+   First Have to Go to this Url: https://painting-service-site.netlify.app/createSuperAdmin
+   Then in Super secret Key Field Provide this String "super-user-secret-key"

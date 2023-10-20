@@ -5,7 +5,7 @@ import { IReturnBooking } from "../types/IBooking";
 import BookingTable from "../components/BookingTable";
 
 export default function BookingHistory() {
-  const { email } = useAppSelector((state) => state.auth.user);
+  const { email, role } = useAppSelector((state) => state.auth.user);
 
   const { data } = useGetUserByEmailQuery(email);
 
@@ -21,6 +21,10 @@ export default function BookingHistory() {
             <tr>
               <th className="p-2">Service Name</th>
               <th className="p-2">Booking Status</th>
+              {(role === "superAdmin" || role === "admin") && (
+                <th className="p-2">Updata Booking Status</th>
+              )}
+
               <th className="p-2">Cancel</th>
             </tr>
           </thead>

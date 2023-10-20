@@ -52,10 +52,7 @@ const EmailSchema = yup.object().shape({
     .string()
 
     .required("address is required"),
-  designation: yup
-    .string()
-
-    .required("designation is required"),
+  designation: yup.string().optional(),
 });
 
 export default function SuperSignUp() {
@@ -89,7 +86,7 @@ export default function SuperSignUp() {
       contactNumber: others.contactNumber,
       address: others.address,
       superRoleKey: others.superRoleKey,
-      designation: others.designation || "",
+      designation: others.designation,
     };
 
     await postUserData(signUpData)
@@ -224,9 +221,9 @@ export default function SuperSignUp() {
           <div className="">
             <Input
               className="border lg:w-96 extraSm:w-60  border-slate-400 rounded p-2"
-              name="design"
+              name="designation"
               type="text"
-              placeholder="desigantion"
+              placeholder="designation"
               register={register}
               error={errors.designation?.message}
               autoFocus
