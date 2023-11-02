@@ -9,7 +9,7 @@ export default function AvailableServiceCart({ service }: ServiceCartProps) {
   const { email } = useAppSelector((state) => state.auth.user);
 
   return (
-    <div className=" my-5 book-cart  text-center ml-4 mr-4 text-white">
+    <div className=" my-5 book-cart  text-center  text-white">
       <div>
         <div className=" grid ">
           <img className="object-cover h-96 w-full" src={image} alt="" />

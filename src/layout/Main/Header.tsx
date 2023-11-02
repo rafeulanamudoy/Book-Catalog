@@ -16,14 +16,16 @@ export default function Header() {
 
   return (
     <div
-      className={` customMid:font-bold  customMid:text-sm uppercase flex justify-between bg-gray-700 text-white  extraSm:text-sm extraSm:font-normal     `}
+      className={` customMid:font-bold     customMid:text-sm uppercase flex justify-between  text-black  extraSm:text-sm extraSm:font-normal    customMid:h-16  `}
     >
       <div
         className={` ${
           isMobileMenuOpen ? "hidden customMid:grid " : "block "
-        }  ml-10 grid content-center leading-[7] `}
+        }  ml-10 grid content-center `}
       >
-        <span className=" text-fuchsia-400  text">Painting</span>
+        <span className=" text-red-500 md:text-2xl extraSm:text-sm  font-bold ">
+          Wall - Wizards
+        </span>
       </div>
       <nav className="hidden customMid:grid grid-cols-3 content-center    gap-x-8">
         {[
@@ -35,7 +37,7 @@ export default function Header() {
           <Link
             key={Math.floor(new Date().valueOf() * Math.random())}
             to={url}
-            className=" leading-[4rem]    text-center hover:ring-2 hover:bg-amber-800 hover:rounded-lg "
+            className="   text-center hover:ring-2 hover:bg-yellow-300 hover:rounded-lg "
           >
             {title}
           </Link>
@@ -64,7 +66,7 @@ export default function Header() {
               <Link
                 key={Math.floor(new Date().valueOf() * Math.random())}
                 to={url}
-                className="  leading-[4rem]  w-28  text-center hover:ring-2 hover:bg-amber-800 hover:rounded-lg "
+                className="    w-28  text-center hover:ring-2 hover:bg-yellow-300 hover:rounded-lg "
               >
                 {title}
               </Link>
@@ -73,7 +75,7 @@ export default function Header() {
         </>
       )}
       <div className="customMid:hidden flex  mx-5 ">
-        <button className="text-xl text-white" onClick={toggleMobileMenu}>
+        <button className="text-xl text-black" onClick={toggleMobileMenu}>
           &#9776;
         </button>
       </div>
@@ -89,7 +91,7 @@ export default function Header() {
               <Link
                 key={url}
                 to={url}
-                className="hover:underline text-white  mb-3"
+                className="hover:underline text-black  mb-3"
               >
                 {title}
               </Link>
@@ -98,7 +100,7 @@ export default function Header() {
             {user.email ? (
               <>
                 <Link
-                  className="flex hover:underline mb-3 text-white uppercase "
+                  className="flex hover:underline mb-3 text-black uppercase "
                   to="/dashboard"
                 >
                   Dashboard
@@ -106,7 +108,7 @@ export default function Header() {
 
                 <button
                   onClick={() => dispatch(logOut())}
-                  className="flex hover:underline text-white uppercase mb-3 "
+                  className="flex hover:underline text-black uppercase mb-3 "
                 >
                   Logout
                 </button>
@@ -120,7 +122,7 @@ export default function Header() {
                   <Link
                     key={url}
                     to={url}
-                    className="text-white hover:underline mb-3"
+                    className="text-black hover:underline mb-3"
                   >
                     {title}
                   </Link>

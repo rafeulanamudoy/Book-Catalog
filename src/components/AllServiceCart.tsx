@@ -25,7 +25,7 @@ export default function AllServiceCart({ service }: ServiceCartProps) {
         <h1>Price: {price}</h1>
         <h1>Category:{category?.title}</h1>
         <h1>Service Status: {serviceStatusString}</h1>
-        <div className="flex gap-2 justify-center my-5 text-xs leading-8">
+        <div className="flex gap-3 justify-center my-5 text-xs leading-8">
           {email && serviceStatusString === "available" ? (
             <Link
               to="/book"
