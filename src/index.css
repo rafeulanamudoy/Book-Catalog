@@ -11,12 +11,7 @@
   }
 }
 
-@layer utilities {
-  .box-shadow-form {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  }
+@layer components {
   .submit-button {
     width: 50%;
     text-align: center;
@@ -29,22 +24,6 @@
     font-weight: 700;
     line-height: 40px;
   }
-  .book-cart {
-    box-shadow: 7px 7px 5px rgb(0, 2, 128);
-    border: 2px solid black;
-    background-image: linear-gradient(
-      to right,
-      rgba(255, 0, 0, 0),
-      rgb(7, 0, 0)
-    );
-  }
-
-  .singleBookCart {
-    box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px,
-      rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px,
-      rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px;
-  }
-
   .progress-bar {
     position: fixed;
     top: 0;
@@ -55,13 +34,6 @@
     height: 4px;
     transform-origin: 0%;
   }
-  .bookPageGradient {
-    background-color: #74ebd5;
-    background-image: linear-gradient(90deg, #74ebd5 0%, #9face6 100%);
-  }
-  .sideBar {
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-  }
   .background-image {
     background-size: cover;
     background-position: center;
@@ -69,5 +41,38 @@
     background-attachment: fixed;
 
     width: 100%;
+  }
+  .detailsButton {
+    background-color: #ca4137;
+    width: 128px;
+    border-radius: 999px;
+    color: white;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .box-shadow-form {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+
+  .book-cart {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .singleBookCart {
+    box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px,
+      rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px,
+      rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px;
+  }
+
+  .bookPageGradient {
+    background-color: #74ebd5;
+    background-image: linear-gradient(90deg, #74ebd5 0%, #9face6 100%);
+  }
+  .sideBar {
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 }
