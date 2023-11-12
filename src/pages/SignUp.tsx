@@ -119,6 +119,7 @@ export default function SignUp() {
               placeholder="Enter your First Name"
               error={errors.firstName?.message}
               register={register}
+              defaultValue={""}
               autoFocus
             />
           </div>
@@ -135,6 +136,7 @@ export default function SignUp() {
               placeholder="Enter your Last Name"
               error={errors.lastName?.message}
               register={register}
+              defaultValue={""}
               autoFocus
             />
           </div>
@@ -151,6 +153,7 @@ export default function SignUp() {
               placeholder="Enter your email"
               error={errors.email?.message}
               register={register}
+              defaultValue={""}
               autoFocus
             />
           </div>
@@ -168,6 +171,7 @@ export default function SignUp() {
               placeholder="Password"
               error={errors.password?.message}
               register={register}
+              defaultValue={""}
               autoFocus
             />
           </div>
@@ -183,6 +187,7 @@ export default function SignUp() {
               type="password"
               placeholder="confirmPassword"
               register={register}
+              defaultValue={""}
               error={errors.confirmPassword?.message}
               autoFocus
             />
@@ -199,6 +204,7 @@ export default function SignUp() {
               type="text"
               placeholder="contactNumber"
               register={register}
+              defaultValue={""}
               error={errors.contactNumber?.message}
               autoFocus
             />
@@ -216,6 +222,7 @@ export default function SignUp() {
               type="text"
               placeholder="Address"
               register={register}
+              defaultValue={""}
               error={errors.address?.message}
               autoFocus
             />
@@ -233,6 +240,7 @@ export default function SignUp() {
                 name="gender"
                 value="male"
                 register={register}
+                defaultValue={""}
                 id="maleRadio"
               />
               <label>male</label>
@@ -243,6 +251,7 @@ export default function SignUp() {
                 name="gender"
                 value="female"
                 register={register}
+                defaultValue={""}
                 id="femaleRadio"
               />
               <label>female</label>

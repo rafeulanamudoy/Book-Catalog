@@ -1,6 +1,6 @@
 import { IService } from "../types/IService";
 import SearchBar from "../components/SearchBar";
-import ProductFilterModal from "../components/ProductFilterModel";
+import ProductFilterModal from "../components/ProductFilterModal";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";

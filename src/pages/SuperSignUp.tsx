@@ -129,6 +129,7 @@ export default function SuperSignUp() {
               placeholder="Enter your First Name"
               error={errors.firstName?.message}
               register={register}
+              defaultValue={""}
               autoFocus
             />
           </div>
@@ -145,6 +146,7 @@ export default function SuperSignUp() {
               placeholder="Enter your Last Name"
               error={errors.lastName?.message}
               register={register}
+              defaultValue={""}
               autoFocus
             />
           </div>
@@ -161,6 +163,7 @@ export default function SuperSignUp() {
               placeholder="Enter your email"
               error={errors.email?.message}
               register={register}
+              defaultValue={""}
               autoFocus
             />
           </div>
@@ -177,6 +180,7 @@ export default function SuperSignUp() {
               placeholder="Enter your The Super Secret Key"
               error={errors.superRoleKey?.message}
               register={register}
+              defaultValue={""}
               autoFocus
             />
           </div>
@@ -194,6 +198,7 @@ export default function SuperSignUp() {
               placeholder="Password"
               error={errors.password?.message}
               register={register}
+              defaultValue={""}
               autoFocus
             />
           </div>
@@ -209,6 +214,7 @@ export default function SuperSignUp() {
               type="password"
               placeholder="confirmPassword"
               register={register}
+              defaultValue={""}
               error={errors.confirmPassword?.message}
               autoFocus
             />
@@ -225,6 +231,7 @@ export default function SuperSignUp() {
               type="text"
               placeholder="designation"
               register={register}
+              defaultValue={""}
               error={errors.designation?.message}
               autoFocus
             />
@@ -241,6 +248,7 @@ export default function SuperSignUp() {
               type="text"
               placeholder="contactNumber"
               register={register}
+              defaultValue={""}
               error={errors.contactNumber?.message}
               autoFocus
             />
@@ -258,6 +266,7 @@ export default function SuperSignUp() {
               type="text"
               placeholder="Address"
               register={register}
+              defaultValue={""}
               error={errors.gender?.message}
               autoFocus
             />
@@ -275,6 +284,7 @@ export default function SuperSignUp() {
                 name="gender"
                 value="male"
                 register={register}
+                defaultValue={""}
                 id="maleRadio"
               />
               <label>male</label>
@@ -285,6 +295,7 @@ export default function SuperSignUp() {
                 name="gender"
                 value="female"
                 register={register}
+                defaultValue={""}
                 id="femaleRadio"
               />
               <label>female</label>

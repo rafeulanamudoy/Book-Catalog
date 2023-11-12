@@ -9,6 +9,7 @@ export default function Banner() {
 
   // Function to handle image loading errors and switch to the backup image
   const handleImageError = () => {
+    console.log("backup");
     setImageSrc(backupImageSrc);
   };
 

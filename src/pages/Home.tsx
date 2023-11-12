@@ -6,7 +6,13 @@ import {
   useGetUpcomingServiceQuery,
 } from "../redux/features/service/serviceApi";
 import { IService } from "../types/IService";
-import { motion, useScroll, useSpring } from "framer-motion";
+import {
+  m,
+  LazyMotion,
+  domAnimation,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 export default function Home() {
   const { scrollYProgress } = useScroll();
 
@@ -19,32 +25,34 @@ export default function Home() {
     restDelta: 0.001,
   });
   return (
-    <div className="relative">
-      <motion.div className="progress-bar" style={{ scaleX }} />
+    <LazyMotion features={domAnimation}>
+      <div className="relative">
+        <m.div className="progress-bar" style={{ scaleX }} />
 
-      <Banner />
-      <div className="  ">
-        <h1 className="text-center text-4xl py-10">Top Available Service</h1>
-        <div className="  w-3/4 mx-auto grid xl:grid-cols-3  gap-10  lg:grid-cols-2 md:grid-cols-1 extraSm:grid-cols-1">
-          {availableService?.data?.map((service: IService) => (
-            <ServiceCart
-              key={Math.floor(new Date().valueOf() * Math.random())}
-              service={service}
-            />
-          ))}
-        </div>
-        <div>
-          <h1 className="text-center text-4xl py-10">Top Upcoming Service</h1>
-          <div className="  w-3/4 mx-auto  mb-10  grid xl:grid-cols-3 gap-y-4 items-center lg:grid-cols-2 md:grid-cols-1 extraSm:grid-cols-1">
-            {upcomingService?.data?.map((service: IService) => (
+        <Banner />
+        <div className="  ">
+          <h1 className="text-center text-4xl py-10">Top Available Service</h1>
+          <div className="  w-3/4 mx-auto grid xl:grid-cols-3  gap-10  lg:grid-cols-2 md:grid-cols-1 extraSm:grid-cols-1">
+            {availableService?.data?.map((service: IService) => (
               <ServiceCart
                 key={Math.floor(new Date().valueOf() * Math.random())}
                 service={service}
               />
             ))}
           </div>
+          <div>
+            <h1 className="text-center text-4xl py-10">Top Upcoming Service</h1>
+            <div className="  w-3/4 mx-auto  mb-10  grid xl:grid-cols-3 gap-y-4 items-center lg:grid-cols-2 md:grid-cols-1 extraSm:grid-cols-1">
+              {upcomingService?.data?.map((service: IService) => (
+                <ServiceCart
+                  key={Math.floor(new Date().valueOf() * Math.random())}
+                  service={service}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </LazyMotion>
   );
 }
