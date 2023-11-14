@@ -18,7 +18,9 @@ export default function SideBar() {
   };
 
   return (
-    <div className={`h-screen   bg-slate-800  text-white     col-span-1    `}>
+    <div
+      className={` min-h-screen   bg-slate-800  text-white     col-span-1    `}
+    >
       <div className="flex flex-col    h-full   ">
         <div
           className={

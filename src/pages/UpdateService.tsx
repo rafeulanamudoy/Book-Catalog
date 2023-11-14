@@ -1,8 +1,10 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IService } from "../types/IService";
 import { useUpdateServiceMutation } from "../redux/features/service/serviceApi";
 import toast from "react-hot-toast";
+import Form from "../reactHookForm/Form";
+import Input from "../reactHookForm/Input";
 
 export default function UpdateService() {
   const location = useLocation();
@@ -11,11 +13,11 @@ export default function UpdateService() {
   const { register, handleSubmit, reset } = useForm<IService>();
   const [updateService] = useUpdateServiceMutation();
   const navigate = useNavigate();
-  const onSubmit: SubmitHandler<IService> = async (payload) => {
+  const onSubmit = async (payload: IService) => {
     const parsePrice = parseFloat(payload.price as unknown as string);
     const serviceId = location?.state?.id;
-    console.log(serviceId);
-    console.log(payload);
+    //console.log(serviceId);
+    console.log(payload, "payload check");
     const updateData = {
       name: payload.name,
       image: payload.image,
@@ -29,6 +31,7 @@ export default function UpdateService() {
       .unwrap()
       .then((payload) => {
         toast.success(payload?.message);
+
         navigate("/dashboard/allService");
 
         reset();
@@ -38,26 +41,29 @@ export default function UpdateService() {
 
         toast.error(error?.data?.message);
       });
-    console.log(updateData);
+    //console.log(updateData);
   };
 
   return (
     <div className="my-10 ">
-      <form
+      <Form
         className="   extraSm:text-xs lg:text-sm grid justify-center "
-        onSubmit={handleSubmit(onSubmit)}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+        register={register}
       >
         <h1 className="text-center text-2xl text-orange-600 ">Edit Service</h1>
 
         <div className=" ">
           <label htmlFor="">Service Name</label>
           <div className="grid">
-            <input
+            <Input
               className="border text-black border-slate-400 rounded:lg p-2"
               placeholder="Service Name"
               autoFocus
+              name="name"
               defaultValue={location?.state?.name}
-              {...register("name")}
+              register={register}
             />
           </div>
         </div>
@@ -65,12 +71,13 @@ export default function UpdateService() {
         <div className="  ">
           <label htmlFor="">Image Url</label>
           <div className="grid">
-            <input
+            <Input
               className="border w-full text-black border-slate-400 rounded p-2"
               type="text"
+              name="image"
               placeholder="Image Url"
               defaultValue={location?.state?.image}
-              {...register("image")}
+              register={register}
               autoFocus
             />
           </div>
@@ -79,11 +86,13 @@ export default function UpdateService() {
         <div className="  ">
           <label htmlFor="">description</label>
           <div className="grid">
-            <textarea
+            <Input
               className="border w-full text-black border-slate-400 rounded p-2"
               placeholder="description"
+              name="description"
+              textarea={true}
               defaultValue={location?.state?.description}
-              {...register("description")}
+              register={register}
               autoFocus
             />
           </div>
@@ -92,12 +101,13 @@ export default function UpdateService() {
         <div className="  ">
           <label htmlFor="">price</label>
           <div className="grid">
-            <input
+            <Input
               className="border w-full text-black border-slate-400 rounded p-2"
               type="number"
               placeholder="price"
+              name="price"
               defaultValue={location?.state?.price}
-              {...register("price")}
+              register={register}
               autoFocus
             />
           </div>
@@ -107,26 +117,34 @@ export default function UpdateService() {
 
           <div className=" flex gap-3">
             <div>
-              <input
+              <Input
                 type="radio"
                 value="available"
-                {...register("serviceStatus")}
+                name="serviceStatus"
+                register={register}
+                defaultChecked={location?.state?.serviceStatus === "available"}
               />
               <label>Available</label>
             </div>
             <div className="">
-              <input
+              <Input
                 type="radio"
                 value="unavailable"
-                {...register("serviceStatus")}
+                name="serviceStatus"
+                register={register}
+                defaultChecked={
+                  location?.state?.serviceStatus === "unavailable"
+                }
               />
               <label>unavailable</label>
             </div>
             <div className="">
-              <input
+              <Input
                 type="radio"
                 value="upcoming"
-                {...register("serviceStatus")}
+                name="serviceStatus"
+                register={register}
+                defaultChecked={location?.state?.serviceStatus === "upcoming"}
               />
               <label>Upcoming</label>
             </div>
@@ -137,7 +155,7 @@ export default function UpdateService() {
           type="submit"
           value="Update"
         />
-      </form>
+      </Form>
     </div>
   );
 }

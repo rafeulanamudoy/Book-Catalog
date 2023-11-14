@@ -12,10 +12,12 @@ export type IBookingService = {
   colorScheme?: string;
   userRequerment?: string;
   location: string;
+
   dimention: {
     width: string;
     height: string;
   };
+
   bookingStatus?: string;
 };
 export type IReturnBooking = {

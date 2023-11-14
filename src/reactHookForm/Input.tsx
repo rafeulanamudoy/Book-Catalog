@@ -10,7 +10,6 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   textarea?: boolean;
   selectOptions?: { value: string; label: string }[];
-  defaultValue: string;
 }
 
 const Input: FC<InputProps> = ({

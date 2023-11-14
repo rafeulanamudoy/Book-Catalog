@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { useAppSelector } from "../hooks/hook";
 
@@ -6,6 +6,8 @@ import { useGetUserByEmailQuery } from "../redux/features/auth/authApi";
 
 import { IBookingService } from "../types/IBooking";
 import { useLocation } from "react-router-dom";
+import Form from "../reactHookForm/Form";
+import Input from "../reactHookForm/Input";
 import { useCreateBookingMutation } from "../redux/features/Booking/bookingApi";
 import toast from "react-hot-toast";
 
@@ -23,9 +25,9 @@ export default function ServiceBook() {
   const { register, handleSubmit, reset } = useForm<IBookingService>();
   const [postBook] = useCreateBookingMutation();
 
-  const onSubmit: SubmitHandler<IBookingService> = async (payload) => {
+  const onSubmit = async (payload: IBookingService) => {
     const publicationDateISO = new Date(payload.startDate).toISOString();
-    console.log(payload);
+    // console.log(payload, publicationDateISO);
 
     const updatedData = {
       userId: payload.userId,
@@ -57,9 +59,11 @@ export default function ServiceBook() {
   return (
     <div className="bookPageGradient ">
       <div className=" ">
-        <form
+        <Form
           className=" h-screen  extraSm:text-xs lg:text-sm grid justify-center "
-          onSubmit={handleSubmit(onSubmit)}
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+          register={register}
         >
           <h1 className="text-center text-2xl text-orange-600 ">
             Book Your Service
@@ -72,6 +76,7 @@ export default function ServiceBook() {
             <div className="grid">
               <input
                 className="border border-slate-400 rounded:lg p-2"
+                name=""
                 defaultValue={location?.state?.name}
                 autoFocus
               />
@@ -81,12 +86,13 @@ export default function ServiceBook() {
           <div className=" hidden ">
             <label htmlFor=""> ServiceId:</label>
             <div className="grid">
-              <input
+              <Input
                 className="border w-full border-slate-400 rounded p-2"
                 type="text"
                 placeholder="serviceId"
+                name="serviceId"
                 defaultValue={location?.state?.id}
-                {...register("serviceId")}
+                register={register}
                 autoFocus
               />
             </div>
@@ -94,12 +100,13 @@ export default function ServiceBook() {
           <div className="hidden ">
             <label htmlFor="">User Id:</label>
             <div className="grid">
-              <input
+              <Input
                 className="border w-full border-slate-400 rounded p-2"
                 type="text"
                 placeholder="userId"
                 defaultValue={data?.data?.id}
-                {...register("userId")}
+                name="userId"
+                register={register}
                 autoFocus
               />
             </div>
@@ -111,11 +118,12 @@ export default function ServiceBook() {
               <span className="text-orange-600 text-xs">Optional*</span>
             </label>
             <div className="grid">
-              <input
+              <Input
                 className="border w-full border-slate-400 rounded p-2"
                 type="text"
                 placeholder="colorScheme"
-                {...register("colorScheme")}
+                name="colorScheme"
+                register={register}
                 autoFocus
               />
             </div>
@@ -126,19 +134,21 @@ export default function ServiceBook() {
               Please Provide The dimention Of the Area To Paint
             </label>
             <div className="grid grid-cols-2 gap-2">
-              <input
+              <Input
                 className="border  border-slate-400 rounded p-2"
                 type="text"
                 placeholder="Height"
-                {...register("dimention.height")}
+                name="dimention.height"
+                register={register}
                 autoFocus
                 required
               />
-              <input
+              <Input
                 className="border border-slate-400 rounded p-2"
                 type="text"
                 placeholder="Width"
-                {...register("dimention.width")}
+                name="dimention.width"
+                register={register}
                 autoFocus
                 required
               />
@@ -152,11 +162,13 @@ export default function ServiceBook() {
               <span className="text-orange-600 text-xs">Optional*</span>
             </label>
             <div className="grid">
-              <input
+              <Input
+                textarea={true}
                 className="border w-full border-slate-400 rounded p-2"
                 type=""
                 placeholder="DesCription"
-                {...register("userRequerment")}
+                name="userRequerment"
+                register={register}
                 autoFocus
               />
             </div>
@@ -168,12 +180,13 @@ export default function ServiceBook() {
               Your Service
             </label>
             <div className="grid">
-              <input
+              <Input
                 className=" w-full border border-slate-400 rounded p-2"
                 type="date"
                 placeholder="Start Time"
+                name="startDate"
+                register={register}
                 required
-                {...register("startDate")}
                 autoFocus
               />
             </div>
@@ -185,12 +198,13 @@ export default function ServiceBook() {
               Time Slot
             </label>
             <div className="grid">
-              <input
+              <Input
                 className="border w-full border-slate-400 rounded p-2"
                 type="time"
                 placeholder="Time Slot"
+                name="timeSlot"
+                register={register}
                 required
-                {...register("timeSlot")}
                 autoFocus
               />
             </div>
@@ -202,19 +216,20 @@ export default function ServiceBook() {
               Address
             </label>
             <div className="grid">
-              <input
+              <Input
                 className="border w-full border-slate-400 rounded p-2"
                 type="string"
                 placeholder="Your Locaton"
+                name="location"
+                register={register}
                 required
-                {...register("location")}
                 autoFocus
               />
             </div>
           </div>
 
           <input className="submit-button " type="submit" value="Book" />
-        </form>
+        </Form>
       </div>
     </div>
   );

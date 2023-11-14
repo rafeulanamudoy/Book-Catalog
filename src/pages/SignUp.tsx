@@ -119,7 +119,6 @@ export default function SignUp() {
               placeholder="Enter your First Name"
               error={errors.firstName?.message}
               register={register}
-              defaultValue={""}
               autoFocus
             />
           </div>
@@ -136,7 +135,6 @@ export default function SignUp() {
               placeholder="Enter your Last Name"
               error={errors.lastName?.message}
               register={register}
-              defaultValue={""}
               autoFocus
             />
           </div>
@@ -153,7 +151,6 @@ export default function SignUp() {
               placeholder="Enter your email"
               error={errors.email?.message}
               register={register}
-              defaultValue={""}
               autoFocus
             />
           </div>

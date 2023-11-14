@@ -18,12 +18,12 @@ export default function ManageServiceCart({ service }: ServiceCartProps) {
         .unwrap()
         .then((payload) => {
           toast.success(payload?.message);
-          console.log(payload);
+          //console.log(payload);
 
-          console.log(payload);
+          // console.log(payload);
         })
         .catch((error) => {
-          console.log(error, "catch");
+          //    console.log(error, "catch");
 
           toast.error(error?.data?.message);
         });
@@ -46,13 +46,13 @@ export default function ManageServiceCart({ service }: ServiceCartProps) {
           <Link
             to="/dashboard/updateService"
             state={service}
-            className="bg-fuchsia-800 w-32 rounded-full"
+            className="bg-yellow-500 w-32 rounded-full"
           >
             Update
           </Link>
           <button
             onClick={handleDelete}
-            className="bg-orange-400 w-32 rounded-full"
+            className="bg-red-500 w-32 rounded-full"
           >
             Delete
           </button>

@@ -71,7 +71,6 @@ export default function SignUp() {
               type="email"
               placeholder="Enter your email"
               error={errors.email?.message}
-              defaultValue={""}
               register={register}
               autoFocus
             />
@@ -87,7 +86,6 @@ export default function SignUp() {
               type="password"
               placeholder="Password"
               error={errors.password?.message}
-              defaultValue={""}
               register={register}
               autoFocus
             />
