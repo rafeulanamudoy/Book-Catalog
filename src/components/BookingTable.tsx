@@ -56,8 +56,9 @@ export default function BookingTable({ booking }: BookingCartProps) {
     <tr>
       <td className="p-2">{booking?.serviceType?.name}</td>
       <td className="p-2">{booking?.bookingStatus}</td>
-      <td className="p-2">
-        {(role === "superAdmin" || role === "admin") && (
+
+      {(role === "superAdmin" || role === "admin") && (
+        <td className="p-2">
           <select
             id="availabilityFilter"
             onChange={handleUpdate}
@@ -68,8 +69,8 @@ export default function BookingTable({ booking }: BookingCartProps) {
             <option value="shipped">shipped</option>
             <option value="delivered">delivered</option>
           </select>
-        )}
-      </td>
+        </td>
+      )}
 
       <td className="p-2">
         <button
