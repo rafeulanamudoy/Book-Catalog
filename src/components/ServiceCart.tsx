@@ -16,7 +16,7 @@ export default function ServiceCart({ service }: ServiceCartProps) {
       <m.div
         whileHover={{ scale: [null, 1.1, 1.1] }}
         transition={{ duration: 0.5 }}
-        className={`book-cart  text-center  ${
+        className={`book-cart  my-10 text-center  ${
           location?.pathname === "/services" ? " bg-white " : ""
         }  `}
       >

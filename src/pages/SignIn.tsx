@@ -60,7 +60,9 @@ export default function SignUp() {
         onSubmit={onSubmit}
         register={register}
       >
-        <h1 className="text-center text-2xl text-orange-600 ">Sign In</h1>
+        <h1 className="text-center text-2xl text-custom-gold font-bold">
+          Sign In
+        </h1>
 
         <div className=" ">
           <label htmlFor="">Email:</label>

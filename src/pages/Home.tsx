@@ -31,8 +31,8 @@ export default function Home() {
 
         <Banner />
         <div className="  ">
-          <h1 className="text-center text-4xl py-10">Top Available Service</h1>
-          <div className="  w-3/4 mx-auto grid xl:grid-cols-3  gap-10  lg:grid-cols-2 md:grid-cols-1 extraSm:grid-cols-1">
+          <h1 className="text-center text-4xl my-5 ">Top Available Service</h1>
+          <div className="  h- w-3/4 mx-auto grid xl:grid-cols-3   gap-16   lg:grid-cols-2 md:grid-cols-1 extraSm:grid-cols-1">
             {availableService?.data?.map((service: IService) => (
               <ServiceCart
                 key={Math.floor(new Date().valueOf() * Math.random())}
@@ -41,8 +41,8 @@ export default function Home() {
             ))}
           </div>
           <div>
-            <h1 className="text-center text-4xl py-10">Top Upcoming Service</h1>
-            <div className="   bottom-0 w-3/4 mx-auto grid xl:grid-cols-3  gap-10  lg:grid-cols-2 md:grid-cols-1 extraSm:grid-cols-1 mb-10">
+            <h1 className="text-center text-4xl my-5 ">Top Upcoming Service</h1>
+            <div className="   bottom-0 w-3/4 mx-auto grid xl:grid-cols-3  gap-16   lg:grid-cols-2 md:grid-cols-1 extraSm:grid-cols-1 mb-10">
               {upcomingService?.data?.map((service: IService) => (
                 <ServiceCart
                   key={Math.floor(new Date().valueOf() * Math.random())}

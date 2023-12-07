@@ -114,7 +114,7 @@ export default function SuperSignUp() {
         onSubmit={onSubmit}
         register={register}
       >
-        <h1 className="text-center text-2xl text-orange-600 ">
+        <h1 className="text-center text-2xl text-custom-gold font-bold ">
           Super Admin Account
         </h1>
         <div className="  grid justify-center ">

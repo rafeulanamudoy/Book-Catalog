@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <div
-      className={`fixed z-10 w-full customMid:font-bold     bg-custom-black text-white extraSm:text-xs   customMid:text-sm uppercase grid lg:flex  lg:justify-between  items-center  lg:h-16  px-8`}
+      className={`   w-full customMid:font-bold     bg-custom-black text-white extraSm:text-xs   customMid:text-sm uppercase grid lg:flex  lg:justify-between  items-center  lg:h-16  px-8`}
     >
       <div className="flex items-center justify-between extraSm:my-5 lg:my-0">
         <span className="text-custom-gold">wall-wizards</span>

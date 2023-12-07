@@ -24,12 +24,12 @@ export default function SideBar() {
       <div className="flex flex-col    h-full   ">
         <div
           className={
-            dashBoardToggle
-              ? ``
-              : `grid justify-center items-center text-orange-400  h-10 `
+            dashBoardToggle ? `` : `grid justify-center items-center   h-10 `
           }
         >
-          <span>{dashBoardToggle ? "" : "Painting Service"} </span>
+          <span className="uppercase  text-custom-gold  text-xl font-bold ">
+            {dashBoardToggle ? "" : "Wall-Wizards"}{" "}
+          </span>
         </div>
         <div
           className={`flex  mx-auto mt-5  0  items-center  ${
