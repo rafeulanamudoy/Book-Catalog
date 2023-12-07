@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { useAppSelector } from "../hooks/hook";
 import { useGetUserByEmailQuery } from "../redux/features/auth/authApi";
@@ -9,6 +9,8 @@ import { useGetCategoriesQuery } from "../redux/features/category/categoryApi";
 import { ICategory } from "../types/ICategory";
 import { useAddServiceMutation } from "../redux/features/service/serviceApi";
 import toast from "react-hot-toast";
+import Form from "../reactHookForm/Form";
+import Input from "../reactHookForm/Input";
 
 export default function AddService() {
   const [selectedCategory, setSelectedCategory] = useState(""); // State to store selected category title
@@ -24,7 +26,7 @@ export default function AddService() {
 
   const { register, handleSubmit, setValue, reset } = useForm<IService>();
 
-  const onSubmit: SubmitHandler<IService> = (payload) => {
+  const onSubmit = async (payload: IService) => {
     console.log(payload);
     const parsePrice = parseFloat(payload.price as unknown as string);
     const postData = {
@@ -90,9 +92,11 @@ export default function AddService() {
 
   return (
     <div className="my-10 ">
-      <form
+      <Form
         className="   extraSm:text-xs lg:text-sm grid justify-center "
-        onSubmit={handleSubmit(onSubmit)}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+        register={register}
       >
         <h1 className="text-center text-2xl text-orange-600 ">Add Service</h1>
 
@@ -112,11 +116,12 @@ export default function AddService() {
         <div className="  ">
           <label htmlFor="">Provide Image Url</label>
           <div className="grid">
-            <input
+            <Input
               className="border w-full text-black border-slate-400 rounded p-2"
               type="text"
               placeholder="image"
-              {...register("image")}
+              name="image"
+              register={register}
               autoFocus
               required
             />
@@ -126,12 +131,13 @@ export default function AddService() {
         <div className="  ">
           <label htmlFor="">Provide Price of Service</label>
           <div className="grid">
-            <input
+            <Input
               className="border w-full text-black border-slate-400 rounded p-2"
               type="number"
               placeholder="Price"
+              name="price"
               defaultValue={data?.data?.contactNumber}
-              {...register("price")}
+              register={register}
               autoFocus
               required
             />
@@ -140,11 +146,13 @@ export default function AddService() {
         <div className="  ">
           <label htmlFor="">Provide Description</label>
           <div className="grid">
-            <textarea
+            <Input
               className="border w-full text-black border-slate-400 rounded p-2"
               placeholder="Description"
+              textarea={true}
               defaultValue={data?.data?.contactNumber}
-              {...register("description")}
+              name="description"
+              register={register}
               autoFocus
               required
             />
@@ -191,7 +199,7 @@ export default function AddService() {
           type="submit"
           value="ADD"
         />
-      </form>
+      </Form>
     </div>
   );
 }

@@ -29,6 +29,7 @@ export default {
         "custom-black": "#181D31",
         "custom-blue": "#001233;",
         "custom-red": "#ca4137",
+        "custom-gold": "#FFD700",
       },
     },
   },

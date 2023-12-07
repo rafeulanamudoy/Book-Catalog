@@ -16,121 +16,62 @@ export default function Header() {
 
   return (
     <div
-      className={` customMid:font-bold     customMid:text-sm uppercase flex justify-between  text-black  extraSm:text-sm extraSm:font-normal    customMid:h-16  `}
+      className={`fixed z-10 w-full customMid:font-bold     bg-custom-black text-white extraSm:text-xs   customMid:text-sm uppercase grid lg:flex  lg:justify-between  items-center  lg:h-16  px-8`}
     >
-      <div
-        className={` ${
-          isMobileMenuOpen ? "hidden customMid:grid " : "block "
-        }  ml-10 grid content-center `}
-      >
-        <span className=" text-red-500 md:text-2xl extraSm:text-sm  font-bold ">
-          Wall - Wizards
-        </span>
+      <div className="flex items-center justify-between extraSm:my-5 lg:my-0">
+        <span className="text-custom-gold">wall-wizards</span>
+        <div className="lg:hidden flex  mx-5 ">
+          <button className="text-xl text-white" onClick={toggleMobileMenu}>
+            &#9776;
+          </button>
+        </div>
       </div>
-      <nav className="hidden customMid:grid grid-cols-3 content-center    gap-x-8">
+      <nav
+        className={`${
+          isMobileMenuOpen ? `lg:flex` : `hidden`
+        } lg:flex  grid gap-y-2  extraSm:mb-2  lg:mb-0  lg:gap-8`}
+      >
         {[
           ["Home", "/home"],
           ["Our Services", "/services"],
-
-          ["Events", "/events"],
         ].map(([title, url]) => (
-          <Link
-            key={Math.floor(new Date().valueOf() * Math.random())}
-            to={url}
-            className="   text-center hover:ring-2 hover:bg-yellow-300 hover:rounded-lg "
-          >
+          <Link key={url} to={url} className="hover:text-custom-gold ">
             {title}
           </Link>
         ))}
       </nav>
       {user.email ? (
-        <>
-          <div className=" hidden customMid:grid grid-cols-2   items-center  ">
-            <Link to="/dashboard" className="uppercase">
-              {" "}
-              Dashboard
-            </Link>
-            <button onClick={() => dispatch(logOut())} className="uppercase">
-              {" "}
-              Logout
-            </button>
-          </div>
-        </>
+        <nav
+          className={`${
+            isMobileMenuOpen ? `lg:flex` : `hidden`
+          } lg:flex  grid  gap-y-2  extraSm:mb-5  lg:mb-0 lg:gap-8`}
+        >
+          <Link to="/dashboard" className="uppercase hover:text-custom-red ">
+            Dashboard
+          </Link>
+          <Link
+            to=""
+            onClick={() => dispatch(logOut())}
+            className="uppercase hover:text-custom-gold "
+          >
+            Logout
+          </Link>
+        </nav>
       ) : (
-        <>
-          <nav className="hidden mr-10 customMid:grid grid-cols-2   gap-x-8  content-center   ">
-            {[
-              ["Sign UP", "/signUp"],
-              ["Sign In", "/signIn"],
-            ].map(([title, url]) => (
-              <Link
-                key={Math.floor(new Date().valueOf() * Math.random())}
-                to={url}
-                className="    w-28  text-center hover:ring-2 hover:bg-yellow-300 hover:rounded-lg "
-              >
-                {title}
-              </Link>
-            ))}
-          </nav>
-        </>
-      )}
-      <div className="customMid:hidden flex  mx-5 ">
-        <button className="text-xl text-black" onClick={toggleMobileMenu}>
-          &#9776;
-        </button>
-      </div>
-      {isMobileMenuOpen && (
-        <div className="  customMid:hidden block mr-10 my-5">
-          <nav className="grid grid-rows-3">
-            {[
-              ["Home", "/home"],
-              ["Our Services", "/services"],
-
-              ["Events", "/events"],
-            ].map(([title, url]) => (
-              <Link
-                key={url}
-                to={url}
-                className="hover:underline text-black  mb-3"
-              >
-                {title}
-              </Link>
-            ))}
-
-            {user.email ? (
-              <>
-                <Link
-                  className="flex hover:underline mb-3 text-black uppercase "
-                  to="/dashboard"
-                >
-                  Dashboard
-                </Link>
-
-                <button
-                  onClick={() => dispatch(logOut())}
-                  className="flex hover:underline text-black uppercase mb-3 "
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                {[
-                  ["Sign Up", "/signUp"],
-                  ["Sign In", "/signIn"],
-                ].map(([title, url]) => (
-                  <Link
-                    key={url}
-                    to={url}
-                    className="text-black hover:underline mb-3"
-                  >
-                    {title}
-                  </Link>
-                ))}
-              </>
-            )}
-          </nav>
-        </div>
+        <nav
+          className={`${
+            isMobileMenuOpen ? `lg:flex` : `hidden`
+          } lg:flex  grid  gap-y-2  extraSm:mb-5  lg:mb-0  lg:gap-8`}
+        >
+          {[
+            ["Sign Up", "/signUp"],
+            ["Sign In", "/signIn"],
+          ].map(([title, url]) => (
+            <Link key={url} to={url} className="  hover:text-custom-gold ">
+              {title}
+            </Link>
+          ))}
+        </nav>
       )}
     </div>
   );

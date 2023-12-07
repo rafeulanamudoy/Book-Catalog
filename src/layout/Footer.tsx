@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <div className="bg-gray-800  text-gray-300 py-4  w-full">
+    <div className="bg-custom-black  text-gray-300 py-4  w-full">
       <div className="container mx-auto flex justify-between items-center">
         <div>
-          <p className="text-xl font-semibold">Refeul anam Udoy</p>
+          <p className="text-xl font-semibold">Wall-Wizards</p>
           <p>&copy; {new Date().getFullYear()} All Rights Reserved</p>
         </div>
         <div>
